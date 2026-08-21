@@ -35,6 +35,9 @@ export function Navbar() {
         <li><Link to="/packages" onClick={() => setIsMobileMenuOpen(false)}>Our Packages</Link></li>
         <li><Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link></li>
         <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link></li>
+        <li className="mobile-btn-container">
+          <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Book Now</a>
+        </li>
       </ul>
       <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="btn-primary desktop-btn">Book Now</a>
     </nav>

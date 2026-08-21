@@ -4,15 +4,15 @@ import { PageHeader, MapPin, Calendar, Users, SearchIcon, Clock, Leaf, Shield, H
 
 export function Home() {
   const popularDestinations = [
-    { title: "Kerala Backwaters", duration: "4 Nights / 5 Days", desc: "Kochi - Munnar - Allepey - Thekkady. Experience the serene backwaters and lush tea gardens.", image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800", badge: "India" },
-    { title: "Bali, Indonesia", duration: "7 Nights / 8 Days", desc: "Nusa Penida - Gili Islands. Tropical paradise with pristine beaches and vibrant culture.", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800", badge: "International" },
-    { title: "Jim Corbett Safari", duration: "3 Nights / 4 Days", desc: "Immerse yourself in nature and witness majestic tigers in their natural habitat.", image: "https://images.unsplash.com/photo-1571569426707-1e8c61bb69ed?auto=format&fit=crop&q=80&w=800", badge: "Wildlife" }
+    { title: "Kerala Backwaters", duration: "4 Nights / 5 Days", desc: "Kochi - Munnar - Allepey - Thekkady. Experience the serene backwaters and lush tea gardens.", image: "/images/kerala-backwaters.jpg", badge: "India" },
+    { title: "Bali, Indonesia", duration: "7 Nights / 8 Days", desc: "Nusa Penida - Gili Islands. Tropical paradise with pristine beaches and vibrant culture.", image: "/images/bali-indonesia.jpg", badge: "International" },
+    { title: "Jim Corbett Safari", duration: "3 Nights / 4 Days", desc: "Immerse yourself in nature and witness majestic tigers in their natural habitat.", image: "/images/jim-corbett-safari.jpg", badge: "Wildlife" }
   ];
 
   const ecoPackages = [
-    { title: "Andaman Islands", duration: "5 Nights / 6 Days", desc: "Havelock & Neil Island. Coral reefs and eco-friendly beachfront stays.", image: "https://images.unsplash.com/photo-1589394815804-964ce0ff96c7?auto=format&fit=crop&q=80&w=800", badge: "Eco-Friendly" },
-    { title: "Meghalaya Escapade", duration: "4 Nights / 5 Days", desc: "Explore living root bridges and the wettest place on earth.", image: "https://images.unsplash.com/photo-1569974459379-ec0a1e127393?auto=format&fit=crop&q=80&w=800", badge: "Nature" },
-    { title: "Switzerland Alpine", duration: "6 Nights / 7 Days", desc: "Pristine lakes, mountain trails, and sustainable rail travel.", image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=800", badge: "Premium" }
+    { title: "Andaman Islands", duration: "5 Nights / 6 Days", desc: "Havelock & Neil Island. Coral reefs and eco-friendly beachfront stays.", image: "/images/andaman-islands.jpg", badge: "Eco-Friendly" },
+    { title: "Meghalaya Escapade", duration: "4 Nights / 5 Days", desc: "Explore living root bridges and the wettest place on earth.", image: "/images/meghalaya-escapade.jpg", badge: "Nature" },
+    { title: "Switzerland Alpine", duration: "6 Nights / 7 Days", desc: "Pristine lakes, mountain trails, and sustainable rail travel.", image: "/images/switzerland-alpine.jpg", badge: "Premium" }
   ];
 
   return (
@@ -170,108 +170,63 @@ export function Packages() {
   const [activeTab, setActiveTab] = React.useState('India');
 
   const indiaPackages = [
-    { title: 'Andaman – Havelock and Neil Island', duration: '5 Nights and 6 Days' },
-    { title: 'Chikmagalur', duration: '2 Nights and 3 Days' },
-    { title: 'Costal Karnataka – Mangalore – Udupi – Gokarna', duration: '5 Nights and 6 Days' },
-    { title: 'Golden Triangle Tour – Delhi – Agra – Jaipur', duration: '5 Nights and 6 Days' },
-    { title: 'Goa', duration: '3 Nights and 4 Days' },
-    { title: 'Gujarat – Rann Utsav', duration: '4 Nights and 5 Days' },
-    { title: 'Himachal – Manali, Shimla, Dalhousie, Dharamshala', duration: 'Varying' },
-    { title: 'Kashmir', duration: '4 Nights and 5 Days' },
-    { title: 'Kerala – Kochi - Munnar – Allepey – Thekkady', duration: '4 Nights and 5 Days' },
-    { title: 'Kodaikanal', duration: '3 Nights and 4 Days' },
-    { title: 'Meghalaya', duration: '4 Nights and 5 Days' },
-    { title: 'Bangalore - Mysore - Coorg', duration: '4 Nights and 5 Days' },
-    { title: 'Ooty', duration: '2 Nights and 3 Days' },
-    { title: 'Rajasthan - Jaipur – Jodhpur – Jaisalmar', duration: '7 Nights and 8 Days' },
-    { title: 'Sikkim and Darjeeling', duration: '5 Nights and 6 Days' },
-    { title: 'Uttrakhand - Mussoorie and Nainital', duration: '5 Nights and 6 Days' },
-    { title: 'Varanasi – Ayodhya', duration: '4 Nights and 5 Days' }
+    { title: 'Andaman – Havelock and Neil Island', duration: '5 Nights and 6 Days', image: '/images/andaman-islands.jpg' },
+    { title: 'Chikmagalur', duration: '2 Nights and 3 Days', image: '/images/chikmagalur.jpg' },
+    { title: 'Costal Karnataka – Mangalore – Udupi – Gokarna', duration: '5 Nights and 6 Days', image: '/images/costal-karnataka.jpg' },
+    { title: 'Golden Triangle Tour – Delhi – Agra – Jaipur', duration: '5 Nights and 6 Days', image: '/images/agra.jpg' },
+    { title: 'Goa', duration: '3 Nights and 4 Days', image: '/images/goa.jpg' },
+    { title: 'Gujarat – Rann Utsav', duration: '4 Nights and 5 Days', image: '/images/rann-utsav.jpg' },
+    { title: 'Himachal – Manali, Shimla, Dalhousie, Dharamshala', duration: 'Varying', image: '/images/himachal-pradesh.jpg' },
+    { title: 'Kashmir', duration: '4 Nights and 5 Days', image: '/images/kashmir.jpg' },
+    { title: 'Kerala – Kochi - Munnar – Allepey – Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala.jpg' },
+    { title: 'Kodaikanal', duration: '3 Nights and 4 Days', image: '/images/kodaikanal.jpg' },
+    { title: 'Meghalaya', duration: '4 Nights and 5 Days', image: '/images/meghalaya.jpg' },
+    { title: 'Bangalore - Mysore - Coorg', duration: '4 Nights and 5 Days', image: '/images/bangalore.jpg' },
+    { title: 'Ooty', duration: '2 Nights and 3 Days', image: '/images/ooty.jpg' },
+    { title: 'Rajasthan - Jaipur – Jodhpur – Jaisalmar', duration: '7 Nights and 8 Days', image: '/images/rajasthan.jpg' },
+    { title: 'Sikkim and Darjeeling', duration: '5 Nights and 6 Days', image: '/images/sikkim.jpg' },
+    { title: 'Uttrakhand - Mussoorie and Nainital', duration: '5 Nights and 6 Days', image: '/images/uttrakhand.jpg' },
+    { title: 'Varanasi – Ayodhya', duration: '4 Nights and 5 Days', image: '/images/varanasi.jpg' }
   ];
 
   const internationalPackages = [
-    { title: 'Australia', duration: '6 Nights and 7 Days' },
-    { title: 'Bali – Indonesia - Nusa Penida – Gili Islands', duration: '7 Nights and 8 Days' },
-    { title: 'China', duration: '7 Nights and 8 Days' },
-    { title: 'Dubai – Abu Dhabi', duration: '5 Nights and 6 Days' },
-    { title: 'Hong Kong', duration: '5 Nights and 6 Days' },
-    { title: 'Japan', duration: '7 Nights and 8 Days' },
-    { title: 'London', duration: '4 Nights and 5 Days' },
-    { title: 'Malaysia', duration: '2 Nights and 3 Days' },
-    { title: 'Maldives', duration: '4 Nights and 5 Days' },
-    { title: 'Phu Quoc', duration: '3 Nights and 4 Days' },
-    { title: 'Singapore', duration: '4 Nights and 5 Days' },
-    { title: 'Sri Lanka', duration: '4 Nights and 5 Days' },
-    { title: 'Switzerland', duration: '6 Nights and 7 Days' },
-    { title: 'Thailand – Bangkok – Pattaya – Phuket – Krabi', duration: '6 Nights and 7 Days' },
-    { title: 'Thailand – Chiang Mai', duration: '3 Nights and 4 Days' },
-    { title: 'Turkey', duration: '5 Nights and 6 Days' },
-    { title: 'Vietnam', duration: '7 Nights and 8 Days' }
+    { title: 'Australia', duration: '6 Nights and 7 Days', image: '/images/australia.jpg' },
+    { title: 'Bali – Indonesia - Nusa Penida – Gili Islands', duration: '7 Nights and 8 Days', image: '/images/bali.jpg' },
+    { title: 'China', duration: '7 Nights and 8 Days', image: '/images/china.jpg' },
+    { title: 'Dubai – Abu Dhabi', duration: '5 Nights and 6 Days', image: '/images/dubai.jpg' },
+    { title: 'Hong Kong', duration: '5 Nights and 6 Days', image: '/images/hong-kong.jpg' },
+    { title: 'Japan', duration: '7 Nights and 8 Days', image: '/images/japan.jpg' },
+    { title: 'London', duration: '4 Nights and 5 Days', image: '/images/london.jpg' },
+    { title: 'Malaysia', duration: '2 Nights and 3 Days', image: '/images/malaysia.jpg' },
+    { title: 'Maldives', duration: '4 Nights and 5 Days', image: '/images/maldives.jpg' },
+    { title: 'Phu Quoc', duration: '3 Nights and 4 Days', image: '/images/phu-quoc.jpg' },
+    { title: 'Singapore', duration: '4 Nights and 5 Days', image: '/images/singapore.jpg' },
+    { title: 'Sri Lanka', duration: '4 Nights and 5 Days', image: '/images/sri-lanka.jpg' },
+    { title: 'Switzerland', duration: '6 Nights and 7 Days', image: '/images/switzerland.jpg' },
+    { title: 'Thailand – Bangkok – Pattaya – Phuket – Krabi', duration: '6 Nights and 7 Days', image: '/images/thailand.jpg' },
+    { title: 'Thailand – Chiang Mai', duration: '3 Nights and 4 Days', image: '/images/chiang-mai.jpg' },
+    { title: 'Turkey', duration: '5 Nights and 6 Days', image: '/images/turkey.jpg' },
+    { title: 'Vietnam', duration: '7 Nights and 8 Days', image: '/images/vietnam.jpg' }
   ];
 
   const wildlifePackages = [
-    { title: 'Bandipur National Park', duration: 'Wildlife Safari' },
-    { title: 'Gir Forest National Park', duration: 'Wildlife Safari' },
-    { title: 'Jim Corbett National Park', duration: 'Wildlife Safari' },
-    { title: 'Kabini National Park', duration: 'Wildlife Safari' },
-    { title: 'Kaziranga National Park', duration: 'Wildlife Safari' },
-    { title: 'Manas National Park', duration: 'Wildlife Safari' },
-    { title: 'Mudumalai Tiger Reserve', duration: 'Wildlife Safari' },
-    { title: 'Parambikulam Tiger Reserve', duration: 'Wildlife Safari' },
-    { title: 'Ranthambore National Park', duration: 'Wildlife Safari' },
-    { title: 'Tadoba-Andhari Tiger Reserve', duration: 'Wildlife Safari' },
-    { title: 'Thekkady – Gavi Wildlife Safari', duration: 'Wildlife Safari' }
+    { title: 'Bandipur National Park', duration: 'Wildlife Safari', image: '/images/bandipur-national-park.jpg' },
+    { title: 'Gir Forest National Park', duration: 'Wildlife Safari', image: '/images/gir-forest-national-park.jpg' },
+    { title: 'Jim Corbett National Park', duration: 'Wildlife Safari', image: '/images/jim-corbett-national-park.jpg' },
+    { title: 'Kabini National Park', duration: 'Wildlife Safari', image: '/images/kabina-national-park.jpg' },
+    { title: 'Kaziranga National Park', duration: 'Wildlife Safari', image: '/images/kaziranga-national-park.jpg' },
+    { title: 'Manas National Park', duration: 'Wildlife Safari', image: '/images/manas-national-park.jpg' },
+    { title: 'Mudumalai Tiger Reserve', duration: 'Wildlife Safari', image: '/images/mudumalai-tiger-reserve.jpg' },
+    { title: 'Parambikulam Tiger Reserve', duration: 'Wildlife Safari', image: '/images/parambikulam-tiger-reserve.jpg' },
+    { title: 'Ranthambore National Park', duration: 'Wildlife Safari', image: '/images/ranthambore-national-park.jpg' },
+    { title: 'Tadoba-Andhari Tiger Reserve', duration: 'Wildlife Safari', image: '/images/tadoba-andhari-tiger-reserve.jpg' },
+    { title: 'Thekkady – Gavi Wildlife Safari', duration: 'Wildlife Safari', image: '/images/thekkady-gavi-wildlife-safari.jpg' }
   ];
 
-  const getImageForPackage = (title) => {
-    const t = title.toLowerCase();
-
-    // 1. Beaches & Islands
-    if (t.includes('andaman') || t.includes('goa') || t.includes('maldives') || t.includes('bali') || t.includes('phu quoc') || t.includes('sri lanka') || t.includes('australia')) {
-      return 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600';
-    }
-    
-    // 2. Snow & Mountains
-    if (t.includes('switzerland') || t.includes('himachal') || t.includes('kashmir') || t.includes('sikkim') || t.includes('uttrakhand')) {
-      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Matterhorn_from_Domh%C3%BCtte_-_2.jpg/800px-Matterhorn_from_Domh%C3%BCtte_-_2.jpg';
-    }
-
-    // 3. Wildlife & Safaris
-    if (t.includes('national park') || t.includes('tiger') || t.includes('safari') || t.includes('corbett') || t.includes('kabini') || t.includes('gir') || t.includes('bandipur')) {
-      return 'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&q=80&w=600'; 
-    }
-
-    // 4. Lush Green / Hill Stations
-    if (t.includes('kerala') || t.includes('chikmagalur') || t.includes('meghalaya') || t.includes('coorg') || t.includes('ooty') || t.includes('kodaikanal') || t.includes('vietnam') || t.includes('thailand') || t.includes('karnataka')) {
-      return 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=600';
-    }
-
-    // 5. City, Culture & Heritage
-    if (t.includes('dubai') || t.includes('singapore') || t.includes('london') || t.includes('hong kong') || t.includes('japan') || t.includes('china') || t.includes('malaysia') || t.includes('turkey')) {
-      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Marina_Bay_Sands%2C_Singapore_-_Dec_2009.jpg/800px-Marina_Bay_Sands%2C_Singapore_-_Dec_2009.jpg';
-    }
-
-    // 6. Desert & Historic India
-    if (t.includes('rajasthan') || t.includes('gujarat') || t.includes('golden triangle')) {
-      return 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=600';
-    }
-
-    // 7. Spiritual / River
-    if (t.includes('varanasi') || t.includes('ayodhya')) {
-      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg/800px-Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg';
-    }
-
-    // Default beautiful travel placeholder for anything else
-    return 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=600';
-  };
-
   const getActivePackages = () => {
-    let pkgs = [];
-    if (activeTab === 'India') pkgs = indiaPackages;
-    else if (activeTab === 'International') pkgs = internationalPackages;
-    else pkgs = wildlifePackages;
-
-    return pkgs.map((p) => ({ ...p, image: getImageForPackage(p.title) }));
+    if (activeTab === 'India') return indiaPackages;
+    if (activeTab === 'International') return internationalPackages;
+    return wildlifePackages;
   };
 
   const getTabStyle = (tabName) => ({

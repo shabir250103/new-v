@@ -150,6 +150,10 @@ section {
   transform: translateY(-2px);
 }
 
+.mobile-btn-container {
+  display: none;
+}
+
 /* Navigation */
 .navbar {
   position: absolute;
@@ -670,10 +674,18 @@ section {
     order: 1;
   }
   
-  .navbar .btn-primary {
-    order: 2;
-    margin-left: auto;
-    margin-right: 1rem;
+  .navbar .desktop-btn {
+    display: none;
+  }
+
+  .mobile-btn-container {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  .mobile-btn-container .btn-primary {
+    display: inline-block;
+    width: 100%;
   }
 
   .cta-title {
