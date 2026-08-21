@@ -280,12 +280,12 @@ export function About() {
     <>
       <PageHeader title="About Us" subtitle="Discover The World. Discover Yourself." image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1600" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-          <div style={{ position: 'relative' }}>
-            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800" alt="Travel Journey" style={{ width: '100%', borderRadius: '24px', boxShadow: 'var(--shadow-lg)' }} />
-            <div style={{ position: 'absolute', bottom: '-2rem', right: '-1rem', background: 'var(--white)', padding: '1.5rem', borderRadius: '16px', boxShadow: 'var(--shadow-lg)', maxWidth: '280px' }}>
-              <p style={{ fontSize: '1.1rem', fontStyle: 'italic', color: 'var(--deep-forest-green)', fontWeight: '600', marginBottom: '0.5rem' }}>"We create experiences that inspire."</p>
-              <span style={{ color: 'var(--slate-gray)', fontSize: '0.9rem' }}>— Jeevapriya MS, Founder</span>
+        <div className="about-grid">
+          <div className="about-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800" alt="Travel Journey" className="about-main-img" />
+            <div className="about-quote-box">
+              <p className="quote-text">"We create experiences that inspire."</p>
+              <span className="quote-author">— Jeevapriya MS, Founder</span>
             </div>
           </div>
           <div style={{ paddingLeft: '1rem' }}>
@@ -335,7 +335,7 @@ export function Contact() {
     <>
       <PageHeader title="Contact Us" subtitle="We're here to help you plan your dream vacation." image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem', maxWidth: '1000px', margin: '0 auto' }}>
+        <div className="contact-grid">
           
           {/* Office Details */}
           <div style={{ background: 'var(--charcoal)', color: 'var(--white)', padding: '3rem', borderRadius: '24px', boxShadow: 'var(--shadow-lg)' }}>
