@@ -182,9 +182,9 @@ section {
 }
 
 .brand-logo {
-  height: 60px;
+  height: 90px;
   width: auto;
-  padding: 4px;
+  padding: 0;
 }
 
 .nav-links {
@@ -702,6 +702,10 @@ section {
     padding: 1rem 1.5rem;
     justify-content: space-between;
     align-items: center;
+  }
+  
+  .brand-logo {
+    height: 65px;
   }
   
   .mobile-menu-btn {
