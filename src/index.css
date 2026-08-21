@@ -182,12 +182,9 @@ section {
 }
 
 .brand-logo {
-  height: 55px;
+  height: 60px;
   width: auto;
-  background-color: var(--white);
-  padding: 4px 12px;
-  border-radius: 8px;
-  box-shadow: var(--shadow-sm);
+  padding: 4px;
 }
 
 .nav-links {
