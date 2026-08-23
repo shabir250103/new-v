@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar, Footer, PopupModal } from './components';
-import { Home, Services, Packages, About, Contact } from './pages';
+import { Home, Services, Packages, About, Contact, Reviews } from './pages';
 import './index.css';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/about" element={<About />} />
+            <Route path="/reviews" element={<Reviews />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

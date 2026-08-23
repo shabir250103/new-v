@@ -6,9 +6,13 @@ export const Calendar = () => <svg width="18" height="18" viewBox="0 0 24 24" fi
 export const Users = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
 export const SearchIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
 export const Clock = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>;
+export const PhoneIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>;
 export const Leaf = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>;
 export const Shield = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
 export const Heart = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>;
+export const InstagramIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
+export const FacebookIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>;
+export const WhatsAppIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>;
 
 export const MenuIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>;
 export const XIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>;
@@ -21,9 +25,9 @@ export function Navbar() {
   return (
     <nav className={`navbar ${isInner ? 'navbar-inner' : ''}`}>
       <Link to="/" className="nav-brand">
-        <img src="/images/logo-white.png" alt="NewV Tours and Travels Logo" className="brand-logo" />
+        <img src="/images/logo.png" alt="NewV Tours and Travels Logo" className="brand-logo" />
       </Link>
-      
+
       <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
         {isMobileMenuOpen ? <XIcon /> : <MenuIcon />}
       </button>
@@ -33,6 +37,7 @@ export function Navbar() {
         <li><Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link></li>
         <li><Link to="/packages" onClick={() => setIsMobileMenuOpen(false)}>Our Packages</Link></li>
         <li><Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link></li>
+        <li><Link to="/reviews" onClick={() => setIsMobileMenuOpen(false)}>Reviews</Link></li>
         <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link></li>
         <li className="mobile-btn-container">
           <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Book Now</a>
@@ -48,7 +53,7 @@ export function Footer() {
     <footer className="footer">
       <div className="footer-grid">
         <div className="footer-brand">
-          <h3>NewV Tours & Travels</h3>
+          <h3>NewV Tours and Travels</h3>
           <p>Founded by Jeevapriya MS. Travel is more than just destinations—it’s a journey within.</p>
         </div>
 
@@ -56,9 +61,37 @@ export function Footer() {
           <h4 className="footer-title">Contact Us</h4>
           <ul className="footer-contact">
             <li><MapPin /> <span>31A, Chelliamman Koil St, Athipet, Ambattur, Chennai - 600058</span></li>
-            <li><Clock /> <span>+91 9840636358</span></li>
+            <li><PhoneIcon /> <span>+91 9840636358</span></li>
             <li><Heart /> <span>newvtoursandtravels@gmail.com</span></li>
           </ul>
+        </div>
+        
+        <div>
+          <h4 className="footer-title">Follow Us</h4>
+          <div className="social-links" style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
+            <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
+              <InstagramIcon />
+            </a>
+            <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
+              <FacebookIcon />
+            </a>
+            <a href="https://wa.me/919840636358" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
+              <WhatsAppIcon />
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 className="footer-title">Our Location</h4>
+          <iframe 
+            src="https://maps.google.com/maps?q=31A,+Chelliamman+Koil+St,+Athipet,+Ambattur,+Chennai&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="180" 
+            style={{ border: 0, borderRadius: '12px', marginTop: '1rem', boxShadow: 'var(--shadow-sm)' }} 
+            allowFullScreen="" 
+            loading="lazy" 
+            title="Office Location"
+          ></iframe>
         </div>
       </div>
       <div className="footer-bottom">
@@ -74,7 +107,7 @@ export function PopupModal() {
   React.useEffect(() => {
     const handleOpenContactModal = () => setIsOpen(true);
     window.addEventListener('open-contact-modal', handleOpenContactModal);
-    
+
     const hasSeenModal = sessionStorage.getItem('hasSeenModal');
     let timer;
     if (!hasSeenModal) {
@@ -83,7 +116,7 @@ export function PopupModal() {
         sessionStorage.setItem('hasSeenModal', 'true');
       }, 1000); // show after 1 second
     }
-    
+
     return () => {
       if (timer) clearTimeout(timer);
       window.removeEventListener('open-contact-modal', handleOpenContactModal);
