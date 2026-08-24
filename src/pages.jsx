@@ -420,7 +420,7 @@ export function Contact() {
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="animate-fade-in-up delay-300">
                 <label style={{ display: 'block', marginBottom: '0.8rem', fontWeight: '600', color: 'var(--charcoal)', fontSize: '0.95rem' }}>Full Name</label>
-                <input required type="text" name="name" value={formData.name} onChange={handleChange} placeholder="John Doe" className="promax-input" />
+                <input required type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" className="promax-input" />
               </div>
               <div className="animate-fade-in-up delay-400">
                 <label style={{ display: 'block', marginBottom: '0.8rem', fontWeight: '600', color: 'var(--charcoal)', fontSize: '0.95rem' }}>Phone Number</label>

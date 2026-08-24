@@ -140,7 +140,7 @@ export function PopupModal() {
         }} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <div>
             <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Full Name</label>
-            <input required type="text" name="name" placeholder="John Doe" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+            <input required type="text" name="name" placeholder="Enter your full name" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
           </div>
           <div>
             <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Phone Number</label>
