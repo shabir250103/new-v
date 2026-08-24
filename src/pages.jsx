@@ -135,7 +135,7 @@ export function Home() {
 
       <section className="cta-section animate-fade-in-up" style={{ margin: '5rem auto' }}>
         <h2 className="cta-title">Ready for your next adventure?</h2>
-        <p className="cta-desc">Join us in exploring the world's most beautiful destinations with our carefully crafted, sustainable travel packages.</p>
+        <p className="cta-desc">Ready to create unforgettable memories? Let our experts craft the perfect personalized itinerary for your next great adventure.</p>
         <button 
           className="btn-secondary" 
           style={{ padding: '1rem 3rem', fontSize: '1.1rem', position: 'relative', zIndex: 10, cursor: 'pointer' }}
