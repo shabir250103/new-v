@@ -114,7 +114,7 @@ export function PopupModal() {
       timer = setTimeout(() => {
         setIsOpen(true);
         sessionStorage.setItem('hasSeenModal', 'true');
-      }, 1000); // show after 1 second
+      }, 60000); // show after 1 minute (60000ms)
     }
 
     return () => {
@@ -131,26 +131,32 @@ export function PopupModal() {
         <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'var(--light-gray)', border: 'none', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', cursor: 'pointer', color: 'var(--slate-gray)' }}>✕</button>
         <h3 style={{ marginBottom: '1.5rem', color: 'var(--deep-forest-green)', fontSize: '1.8rem', textAlign: 'center' }}>Plan Your Dream Trip</h3>
         <p style={{ textAlign: 'center', color: 'var(--slate-gray)', marginBottom: '2rem' }}>Leave your details and we'll craft the perfect itinerary for you.</p>
-        <form onSubmit={(e) => { e.preventDefault(); alert('Thank you! We will contact you soon.'); setIsOpen(false); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+        <form onSubmit={(e) => { 
+          e.preventDefault(); 
+          const formData = new FormData(e.target);
+          const text = `Hello NewV Tours and Travels! I would like to plan my dream trip.%0A%0A*Name:* ${formData.get('name')}%0A*Phone:* ${formData.get('phone')}%0A*Travel Date:* ${formData.get('date')}%0A*Destination:* ${formData.get('destination')}`;
+          window.open(`https://wa.me/919840636358?text=${text}`, '_blank', 'noopener,noreferrer');
+          setIsOpen(false); 
+        }} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <div>
             <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Full Name</label>
-            <input required type="text" placeholder="John Doe" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+            <input required type="text" name="name" placeholder="John Doe" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
           </div>
           <div>
             <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Phone Number</label>
-            <input required type="tel" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+            <input required type="tel" name="phone" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
               <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Travel Date</label>
-              <input required type="date" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+              <input required type="date" name="date" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
             </div>
             <div>
               <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Destination</label>
-              <input required type="text" placeholder="e.g. Kerala, Bali" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+              <input required type="text" name="destination" placeholder="e.g. Kerala, Bali" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
             </div>
           </div>
-          <button type="submit" className="btn-primary" style={{ marginTop: '1rem', padding: '1rem', fontSize: '1.1rem', borderRadius: '8px', width: '100%' }}>Send Enquiry</button>
+          <button type="submit" className="btn-primary" style={{ marginTop: '1rem', padding: '1rem', fontSize: '1.1rem', borderRadius: '8px', width: '100%' }}>Send Enquiry via WhatsApp</button>
         </form>
       </div>
     </div>

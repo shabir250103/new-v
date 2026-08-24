@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PageHeader, MapPin, Calendar, Users, SearchIcon, Clock, Leaf, Shield, Heart, PhoneIcon, InstagramIcon, FacebookIcon } from './components';
+import { reviewImages } from './reviewImages';
 
 const AnimatedNumber = ({ end, duration, suffix = "" }) => {
   const [count, setCount] = React.useState(0);
@@ -370,7 +371,8 @@ export function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for reaching out! We will contact you soon.');
+    const text = `Hello NewV Tours and Travels! I would like to enquire about a trip.%0A%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Travel Date:* ${formData.date}%0A*Destination:* ${formData.destination}`;
+    window.open(`https://wa.me/919840636358?text=${text}`, '_blank', 'noopener,noreferrer');
     setFormData({ name: '', phone: '', date: '', destination: '' });
   };
 
@@ -444,33 +446,100 @@ export function Contact() {
 }
 
 export function Reviews() {
-  const reviews = [
-    { name: "Arun Kumar", location: "Chennai", rating: 5, text: "The customized Kerala trip was fantastic! Everything from the houseboat to the sightseeing was perfectly arranged. Highly recommend!" },
-    { name: "Priya Rajan", location: "Bangalore", rating: 5, text: "We took a group tour to Bali and the experience was seamless. The itinerary was perfectly balanced." },
-    { name: "Sarah & John", location: "Mumbai", rating: 5, text: "Our honeymoon in Switzerland was a dream come true, thanks to the meticulous planning by Jeevapriya and her team." },
-    { name: "Mohammed Tariq", location: "Delhi", rating: 5, text: "Great wildlife safari experience at Jim Corbett. The resorts and guides were very professional and helpful." }
-  ];
+  const scrollRef = React.useRef(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!scrollRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveIndex(Number(entry.target.dataset.index));
+          }
+        });
+      },
+      {
+        root: scrollRef.current,
+        threshold: 0.6, // Trigger when item is 60% visible in the center
+        rootMargin: "0px -25% 0px -25%" // Only consider the center 50% of the container
+      }
+    );
+
+    const items = scrollRef.current.querySelectorAll('.carousel-item');
+    items.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (isHovered) return;
+
+    const autoPlayInterval = setInterval(() => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        // If reached the end, smoothly scroll back to the start
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollBy({ left: 332, behavior: 'smooth' });
+        }
+      }
+    }, 2500); // Auto scroll every 2.5 seconds
+
+    return () => clearInterval(autoPlayInterval);
+  }, [isHovered]);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
-      <PageHeader title="Customer Reviews" subtitle="See what our travelers have to say about their journeys." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
+      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travelers." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
+      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
         <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travelers</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-          {reviews.map((rev, idx) => (
-            <div key={idx} className={`animate-fade-in-up delay-${(idx % 4 + 1) * 100}`} style={{ background: 'var(--white)', padding: '2rem', borderRadius: '24px', boxShadow: 'var(--shadow-md)', border: '1px solid var(--light-gray)' }}>
-              <div style={{ display: 'flex', gap: '0.2rem', color: 'var(--warm-golden)', marginBottom: '1rem', fontSize: '1.2rem' }}>
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} style={{ opacity: i < rev.rating ? 1 : 0.3 }}>★</span>
-                ))}
+        
+        <div 
+          className="animate-fade-in-up delay-100" 
+          style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          
+          <button onClick={() => scroll('left')} className="carousel-btn" style={{ position: 'absolute', left: '10%', zIndex: 10, background: 'var(--white)', border: '1px solid var(--light-gray)', borderRadius: '50%', width: '60px', height: '60px', boxShadow: 'var(--shadow-lg)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)' }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+
+          <div ref={scrollRef} className="hide-scrollbar" style={{ display: 'flex', alignItems: 'center', gap: '2rem', overflowX: 'auto', scrollBehavior: 'smooth', padding: '4rem calc(50% - 150px)', scrollSnapType: 'x mandatory', width: '100%' }}>
+            {reviewImages.map((imgName, idx) => (
+              <div key={idx} data-index={idx} className="carousel-item" style={{ 
+                flex: '0 0 auto', 
+                width: '300px', 
+                height: '500px', 
+                scrollSnapAlign: 'center', 
+                overflow: 'hidden', 
+                borderRadius: '24px', 
+                boxShadow: activeIndex === idx ? '0 20px 40px rgba(0,0,0,0.2)' : 'var(--shadow-md)', 
+                border: '4px solid var(--white)',
+                transform: activeIndex === idx ? 'scale(1.15)' : 'scale(0.85)',
+                opacity: activeIndex === idx ? 1 : 0.4,
+                transition: 'all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)' 
+              }}>
+                <img src={`/images/clientreviews/${imgName}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} loading="lazy" />
               </div>
-              <p style={{ color: 'var(--slate-gray)', fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '2rem', fontStyle: 'italic' }}>"{rev.text}"</p>
-              <div>
-                <h4 style={{ color: 'var(--deep-forest-green)', fontSize: '1.2rem', fontWeight: '700' }}>{rev.name}</h4>
-                <p style={{ color: 'var(--nature-green)', fontSize: '0.9rem' }}>{rev.location}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <button onClick={() => scroll('right')} className="carousel-btn" style={{ position: 'absolute', right: '10%', zIndex: 10, background: 'var(--white)', border: '1px solid var(--light-gray)', borderRadius: '50%', width: '60px', height: '60px', boxShadow: 'var(--shadow-lg)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)' }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+
         </div>
       </section>
     </>

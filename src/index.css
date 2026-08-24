@@ -780,7 +780,8 @@ section {
   }
 
   .brand-logo {
-    height: 65px;
+    height: 45px;
+    max-width: 200px;
   }
 
   .mobile-menu-btn {
@@ -865,5 +866,29 @@ section {
   .navbar .btn-primary {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+  }
+}
+
+/* Hide scrollbar for carousel */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-btn {
+  transition: all 0.3s ease;
+}
+.carousel-btn:hover {
+  background: var(--nature-green) !important;
+  color: var(--white) !important;
+  transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 38px;
   }
 }
