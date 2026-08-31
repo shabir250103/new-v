@@ -445,101 +445,158 @@ export function Contact() {
   );
 }
 
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://xcgxoukscejpngmrnjjl.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjZ3hvdWtzY2VqcG5nbXJuampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxNzEyODUsImV4cCI6MjEwMzc0NzI4NX0.xSMAbBTTb1QWpuScYeGJ16kdMgQ-k4Yb5xkd5AE4RV4';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export function Reviews() {
-  const scrollRef = React.useRef(null);
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [reviews, setReviews] = React.useState([]);
 
   React.useEffect(() => {
-    if (!scrollRef.current) return;
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveIndex(Number(entry.target.dataset.index));
-          }
-        });
-      },
-      {
-        root: scrollRef.current,
-        threshold: 0.6, // Trigger when item is 60% visible in the center
-        rootMargin: "0px -25% 0px -25%" // Only consider the center 50% of the container
+    async function fetchReviews() {
+      const { data, error } = await supabase
+        .from('client_reviews')
+        .select('*')
+        .order('id', { ascending: false });
+      
+      if (data) {
+        setReviews(data);
       }
-    );
-
-    const items = scrollRef.current.querySelectorAll('.carousel-item');
-    items.forEach((item) => observer.observe(item));
-
-    return () => observer.disconnect();
-  }, []);
-
-  React.useEffect(() => {
-    if (isHovered) return;
-
-    const autoPlayInterval = setInterval(() => {
-      if (scrollRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        // If reached the end, smoothly scroll back to the start
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          scrollRef.current.scrollBy({ left: 332, behavior: 'smooth' });
-        }
-      }
-    }, 2500); // Auto scroll every 2.5 seconds
-
-    return () => clearInterval(autoPlayInterval);
-  }, [isHovered]);
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -350 : 350;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
-  };
+    fetchReviews();
+  }, []);
 
   return (
     <>
       <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travelers." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
         <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travelers</h2>
         
-        <div 
-          className="animate-fade-in-up delay-100" 
-          style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          
-          <button onClick={() => scroll('left')} className="carousel-btn" style={{ position: 'absolute', left: '10%', zIndex: 10, background: 'var(--white)', border: '1px solid var(--light-gray)', borderRadius: '50%', width: '60px', height: '60px', boxShadow: 'var(--shadow-lg)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-
-          <div ref={scrollRef} className="hide-scrollbar" style={{ display: 'flex', alignItems: 'center', gap: '2rem', overflowX: 'auto', scrollBehavior: 'smooth', padding: '4rem calc(50% - 150px)', scrollSnapType: 'x mandatory', width: '100%' }}>
-            {reviewImages.map((imgName, idx) => (
-              <div key={idx} data-index={idx} className="carousel-item" style={{ 
-                flex: '0 0 auto', 
-                width: '300px', 
-                height: '500px', 
-                scrollSnapAlign: 'center', 
+        <div className="animate-fade-in-up delay-200" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          gap: '2.5rem', 
+          padding: '0 2rem',
+          maxWidth: '1400px',
+          margin: '0 auto'
+        }}>
+            {reviews.map((review, idx) => (
+              <div key={idx} style={{ 
+                background: 'white',
+                borderRadius: '15px', 
                 overflow: 'hidden', 
-                borderRadius: '24px', 
-                boxShadow: activeIndex === idx ? '0 20px 40px rgba(0,0,0,0.2)' : 'var(--shadow-md)', 
-                border: '4px solid var(--white)',
-                transform: activeIndex === idx ? 'scale(1.15)' : 'scale(0.85)',
-                opacity: activeIndex === idx ? 1 : 0.4,
-                transition: 'all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)' 
-              }}>
-                <img src={`/images/clientreviews/${imgName}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} loading="lazy" />
+                boxShadow: '0 5px 20px rgba(0,0,0,0.08)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.08)'; }}
+              >
+                {review.image_base64 && (
+                  <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                )}
+                <div style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(review.client_name || 'Happy Traveler')}&background=random`} alt="Customer" style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover' }} />
+                      <div style={{ lineHeight: '1.3' }}>
+                        <strong style={{ color: '#333', fontSize: '1.1rem' }}>{review.client_name || 'Happy Traveler'}</strong><br/>
+                        <small style={{ color: '#777' }}>Google Review</small>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                      <span style={{ color: '#4285F4' }}>G</span>
+                      <span style={{ color: '#EA4335' }}>o</span>
+                      <span style={{ color: '#FBBC05' }}>o</span>
+                      <span style={{ color: '#4285F4' }}>g</span>
+                      <span style={{ color: '#34A853' }}>l</span>
+                      <span style={{ color: '#EA4335' }}>e</span>
+                    </div>
+                  </div>
+
+                  <div style={{ color: '#fbbc04', fontSize: '24px', margin: '18px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span>{'★'.repeat(Math.floor(review.rating || 5))}{'☆'.repeat(5 - Math.floor(review.rating || 5))}</span>
+                    <span style={{ color: '#555', fontSize: '16px', fontWeight: '500' }}>{Number(review.rating || 5).toFixed(1)}</span>
+                  </div>
+
+                  <p style={{ color: '#555', lineHeight: '1.6', margin: 0, fontSize: '1rem' }}>
+                    {review.text}
+                  </p>
+
+                </div>
               </div>
             ))}
           </div>
+      </section>
+    </>
+  );
+}
 
-          <button onClick={() => scroll('right')} className="carousel-btn" style={{ position: 'absolute', right: '10%', zIndex: 10, background: 'var(--white)', border: '1px solid var(--light-gray)', borderRadius: '50%', width: '60px', height: '60px', boxShadow: 'var(--shadow-lg)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+export function Gallery() {
+  const [reviews, setReviews] = React.useState([]);
 
+  React.useEffect(() => {
+    async function fetchReviews() {
+      const { data } = await supabase
+        .from('client_reviews')
+        .select('*')
+        .order('id', { ascending: false });
+      
+      if (data) {
+        setReviews(data);
+      }
+    }
+    fetchReviews();
+  }, []);
+
+  return (
+    <>
+      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travelers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
+      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
+        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
+        
+        <div className="animate-fade-in-up delay-200" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', 
+          gap: '1.5rem', 
+          padding: '0 2rem',
+          maxWidth: '1400px',
+          margin: '0 auto'
+        }}>
+          {reviews.filter(r => r.image_base64).map((review, idx) => (
+            <div key={`db-${idx}`} style={{ 
+              overflow: 'hidden', 
+              borderRadius: '16px', 
+              boxShadow: '0 8px 25px rgba(0,0,0,0.1)', 
+              cursor: 'pointer', 
+              transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' 
+            }} 
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03) translateY(-5px)'} 
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
+            >
+              <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Gallery image from review ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+            </div>
+          ))}
+
+          {reviewImages.map((imgName, idx) => (
+            <div key={`static-${idx}`} style={{ 
+              overflow: 'hidden', 
+              borderRadius: '16px', 
+              boxShadow: '0 8px 25px rgba(0,0,0,0.1)', 
+              cursor: 'pointer', 
+              transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' 
+            }} 
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03) translateY(-5px)'} 
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
+            >
+              <img src={`/images/clientreviews/${imgName}`} alt={`Gallery highlight ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+            </div>
+          ))}
         </div>
       </section>
     </>

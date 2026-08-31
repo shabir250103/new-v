@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export const MapPin = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 export const Calendar = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>;
@@ -33,12 +33,13 @@ export function Navbar() {
       </button>
 
       <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-        <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
-        <li><Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link></li>
-        <li><Link to="/packages" onClick={() => setIsMobileMenuOpen(false)}>Our Packages</Link></li>
-        <li><Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link></li>
-        <li><Link to="/reviews" onClick={() => setIsMobileMenuOpen(false)}>Reviews</Link></li>
-        <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link></li>
+        <li><NavLink to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</NavLink></li>
+        <li><NavLink to="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</NavLink></li>
+        <li><NavLink to="/packages" onClick={() => setIsMobileMenuOpen(false)}>Our Packages</NavLink></li>
+        <li><NavLink to="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</NavLink></li>
+        <li><NavLink to="/reviews" onClick={() => setIsMobileMenuOpen(false)}>Reviews</NavLink></li>
+        <li><NavLink to="/gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</NavLink></li>
+        <li><NavLink to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</NavLink></li>
         <li className="mobile-btn-container">
           <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => setIsMobileMenuOpen(false)}>Book Now</a>
         </li>
