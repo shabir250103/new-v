@@ -645,8 +645,9 @@ export function Gallery() {
                     }}
                     style={{
                       position: 'absolute',
-                      width: 'min(80vw, 500px)', 
-                      height: '450px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
                       transition: 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
                       transform: `translateX(${translateX}%) scale(${scale})`,
                       zIndex: zIndex,
@@ -654,13 +655,22 @@ export function Gallery() {
                       visibility: isVisible ? 'visible' : 'hidden',
                       pointerEvents: isVisible ? 'auto' : 'none',
                       cursor: isCenter ? 'default' : 'pointer',
-                      borderRadius: '24px',
-                      boxShadow: isCenter ? '0 25px 50px rgba(0,0,0,0.3)' : '0 10px 20px rgba(0,0,0,0.15)',
-                      overflow: 'hidden',
-                      background: '#fff'
                     }}
                   >
-                    <img src={src} alt={`Gallery highlight ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} loading="lazy" />
+                    <img 
+                      src={src} 
+                      alt={`Gallery highlight ${idx + 1}`} 
+                      style={{ 
+                        maxHeight: '450px',
+                        maxWidth: '85vw',
+                        objectFit: 'contain', 
+                        display: 'block',
+                        borderRadius: '24px',
+                        boxShadow: isCenter ? '0 25px 50px rgba(0,0,0,0.3)' : '0 10px 20px rgba(0,0,0,0.15)',
+                        transition: 'box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
+                      }} 
+                      loading="lazy" 
+                    />
                   </div>
                 )
               })}
