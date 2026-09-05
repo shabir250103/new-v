@@ -33,7 +33,7 @@ export function Home() {
     <>
       <section className="hero">
         <div className="hero-content">
-          <h1 className="hero-title animate-fade-in-up" style={{ fontSize: '4rem', lineHeight: '1.2' }}>Discover The World.<br /><span>Discover Yourself.</span></h1>
+          <h1 className="hero-title animate-fade-in-up" style={{ fontSize: '4rem', lineHeight: '1.2' }}>Discover the world.<br /><span>Discover the new you.</span></h1>
           <div className="hero-desc animate-fade-in-up delay-100" style={{ fontSize: '1.2rem', marginTop: '1.5rem', marginBottom: '2rem' }}>
             <p>Travel is more than just destinations—it’s a journey within, where you leave behind the ordinary, embrace the experience, and return with a new perspective on life.</p>
             <p style={{ marginTop: '1rem', fontWeight: '600' }}>Hassle-free tours, thoughtfully planned, just for you.</p>
@@ -310,7 +310,7 @@ export function Packages() {
 export function About() {
   return (
     <>
-      <PageHeader title="About Us" subtitle="Discover The World. Discover Yourself." image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1600" />
+      <PageHeader title="About Us" subtitle="Discover the world. Discover the new you." image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1600" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
         <div className="about-grid">
           <div className="about-img-wrapper animate-fade-in-up">
@@ -539,6 +539,7 @@ export function Reviews() {
 
 export function Gallery() {
   const [reviews, setReviews] = React.useState([]);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   React.useEffect(() => {
     async function fetchReviews() {
@@ -554,49 +555,139 @@ export function Gallery() {
     fetchReviews();
   }, []);
 
+  const allImages = React.useMemo(() => [
+    ...reviews.filter(r => r.image_base64).map(r => `data:image/jpeg;base64,${r.image_base64}`),
+    ...reviewImages.map(imgName => `/images/clientreviews/${imgName}`)
+  ], [reviews]);
+
+  React.useEffect(() => {
+    if (allImages.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % allImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [allImages.length]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % allImages.length);
+  };
+
   return (
     <>
       <PageHeader title="Photo Gallery" subtitle="Memories captured by our travelers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
+      <section style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
         <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
         
-        <div className="animate-fade-in-up delay-200" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', 
-          gap: '1.5rem', 
-          padding: '0 2rem',
-          maxWidth: '1400px',
-          margin: '0 auto'
-        }}>
-          {reviews.filter(r => r.image_base64).map((review, idx) => (
-            <div key={`db-${idx}`} style={{ 
-              overflow: 'hidden', 
-              borderRadius: '16px', 
-              boxShadow: '0 8px 25px rgba(0,0,0,0.1)', 
-              cursor: 'pointer', 
-              transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' 
-            }} 
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03) translateY(-5px)'} 
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
-            >
-              <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Gallery image from review ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
-            </div>
-          ))}
+        <div className="animate-fade-in-up delay-200" style={{ padding: '0', maxWidth: '100%', margin: '0 auto', display: 'flex', justifyContent: 'center' }}>
+          {allImages.length > 0 ? (
+            <div style={{ 
+              position: 'relative', 
+              width: '100%', 
+              maxWidth: '1200px',
+              height: '500px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              perspective: '1200px'
+            }}>
+              {/* Navigation Buttons */}
+              <button 
+                onClick={handlePrev} 
+                style={{ 
+                  position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', zIndex: 200,
+                  background: 'rgba(255, 255, 255, 0.9)', color: 'var(--deep-forest-green)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', transition: 'all 0.3s ease', fontSize: '1.2rem'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--nature-green)'; e.currentTarget.style.color = 'white'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)'; e.currentTarget.style.color = 'var(--deep-forest-green)'; }}
+              >
+                &#10094;
+              </button>
+              <button 
+                onClick={handleNext} 
+                style={{ 
+                  position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', zIndex: 200,
+                  background: 'rgba(255, 255, 255, 0.9)', color: 'var(--deep-forest-green)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', transition: 'all 0.3s ease', fontSize: '1.2rem'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--nature-green)'; e.currentTarget.style.color = 'white'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)'; e.currentTarget.style.color = 'var(--deep-forest-green)'; }}
+              >
+                &#10095;
+              </button>
 
-          {reviewImages.map((imgName, idx) => (
-            <div key={`static-${idx}`} style={{ 
-              overflow: 'hidden', 
-              borderRadius: '16px', 
-              boxShadow: '0 8px 25px rgba(0,0,0,0.1)', 
-              cursor: 'pointer', 
-              transition: 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' 
-            }} 
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03) translateY(-5px)'} 
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
-            >
-              <img src={`/images/clientreviews/${imgName}`} alt={`Gallery highlight ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+              {/* Coverflow Track */}
+              {allImages.map((src, idx) => {
+                let offset = idx - currentIndex;
+                const half = Math.floor(allImages.length / 2);
+                
+                if (allImages.length > 3) {
+                  if (offset > half) offset -= allImages.length;
+                  else if (offset < -half) offset += allImages.length;
+                }
+
+                const isCenter = offset === 0;
+                const absOffset = Math.abs(offset);
+                const isVisible = absOffset <= 2;
+                
+                const scale = isCenter ? 1 : Math.max(1 - (absOffset * 0.25), 0.4);
+                const translateX = offset * 65; 
+                const zIndex = 100 - absOffset;
+                const opacity = isVisible ? (isCenter ? 1 : Math.max(1 - (absOffset * 0.4), 0.2)) : 0;
+
+                return (
+                  <div 
+                    key={idx}
+                    onClick={() => {
+                      if (!isCenter && isVisible) setCurrentIndex(idx);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      width: 'min(80vw, 500px)', 
+                      height: '450px',
+                      transition: 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
+                      transform: `translateX(${translateX}%) scale(${scale})`,
+                      zIndex: zIndex,
+                      opacity: opacity,
+                      visibility: isVisible ? 'visible' : 'hidden',
+                      pointerEvents: isVisible ? 'auto' : 'none',
+                      cursor: isCenter ? 'default' : 'pointer',
+                      borderRadius: '24px',
+                      boxShadow: isCenter ? '0 25px 50px rgba(0,0,0,0.3)' : '0 10px 20px rgba(0,0,0,0.15)',
+                      overflow: 'hidden',
+                      background: '#fff'
+                    }}
+                  >
+                    <img src={src} alt={`Gallery highlight ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                  </div>
+                )
+              })}
+
+              {/* Indicators */}
+              <div style={{ position: 'absolute', bottom: '-40px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10, flexWrap: 'wrap', justifyContent: 'center', width: '90%' }}>
+                {allImages.map((_, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => setCurrentIndex(idx)}
+                    style={{ 
+                      width: currentIndex === idx ? '24px' : '10px', 
+                      height: '10px', 
+                      borderRadius: '5px', 
+                      background: currentIndex === idx ? 'var(--nature-green)' : 'var(--light-gray)', 
+                      border: 'none', 
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }} 
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
-          ))}
+          ) : (
+            <p style={{ textAlign: 'center', color: 'var(--slate-gray)' }}>Loading gallery...</p>
+          )}
         </div>
       </section>
     </>
