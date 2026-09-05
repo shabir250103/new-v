@@ -470,9 +470,9 @@ export function Reviews() {
 
   return (
     <>
-      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travelers." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
+      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
-        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travelers</h2>
+        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travellers</h2>
         
         <div className="animate-fade-in-up delay-200" style={{ 
           display: 'grid', 
@@ -578,7 +578,7 @@ export function Gallery() {
 
   return (
     <>
-      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travelers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
+      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
       <section style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
         <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
         
@@ -660,7 +660,7 @@ export function Gallery() {
                       background: '#fff'
                     }}
                   >
-                    <img src={src} alt={`Gallery highlight ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                    <img src={src} alt={`Gallery highlight ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} loading="lazy" />
                   </div>
                 )
               })}

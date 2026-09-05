@@ -1,8 +1,10 @@
 export const reviewImages = [
   "WhatsApp Image 2026-08-28 at 11.14.41 AM.jpeg",
+  "WhatsApp Image 2026-08-23 at 4.35.55 PM (1).jpeg",
+  "WhatsApp Image 2026-08-23 at 4.35.55 PM (2).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.30 PM.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.37 PM.jpeg",
-  "WhatsApp Image 2026-08-23 at 4.35.42 PM.jpeg",
+  "WhatsApp Image 2026-08-23 at 4.35.49 PM.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.43 PM.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.44 PM (1).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.44 PM.jpeg",
@@ -12,9 +14,9 @@ export const reviewImages = [
   "WhatsApp Image 2026-08-23 at 4.35.48 PM (1).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.48 PM (2).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.48 PM.jpeg",
+  "WhatsApp Image 2026-08-23 at 4.35.42 PM.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.49 PM (1).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.49 PM (2).jpeg",
-  "WhatsApp Image 2026-08-23 at 4.35.49 PM.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.50 PM (1).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.51 PM.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.52 PM (1).jpeg",
@@ -23,9 +25,20 @@ export const reviewImages = [
   "WhatsApp Image 2026-08-23 at 4.35.54 PM (1).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.54 PM (2).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.54 PM.jpeg",
-  "WhatsApp Image 2026-08-23 at 4.35.55 PM (1).jpeg",
-  "WhatsApp Image 2026-08-23 at 4.35.55 PM (2).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.55 PM.jpeg",
-  "image.png"
+  "image.png",
+  "image6.png",
+  "image2.png",
+  "image3.png",
+  "image4.png",
+  "image5.png",
+  "image6.png",
+  "image7.png",
+  "image8.png",
+  "image9.png",
+  "image10.png",
+  "image11.png",
+
+
 
 ];
