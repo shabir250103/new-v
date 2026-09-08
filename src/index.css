@@ -207,7 +207,7 @@ section {
 }
 
 .brand-logo {
-  height: 60px;
+  height: 90px;
   width: auto;
   padding: 0;
 }
@@ -232,7 +232,7 @@ section {
 .hero {
   height: 100vh;
   min-height: 700px;
-  background-image: url('/hero.png');
+  background-image: url('/images/sunset_beach.png');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -355,7 +355,7 @@ section {
 
 .about-img-wrapper {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .about-main-img {
@@ -366,7 +366,7 @@ section {
 
 .about-quote-box {
   position: absolute;
-  bottom: -2rem;
+  bottom: -4rem;
   right: -1rem;
   background: var(--white);
   padding: 1.5rem;
@@ -762,7 +762,7 @@ section {
     position: relative;
     bottom: auto;
     right: auto;
-    margin: -2rem auto 0;
+    margin: 1rem auto 0;
     max-width: 90%;
     z-index: 2;
     text-align: center;
@@ -780,7 +780,7 @@ section {
   }
 
   .brand-logo {
-    height: 45px;
+    height: 65px;
     max-width: 80vw;
     object-fit: contain;
   }
