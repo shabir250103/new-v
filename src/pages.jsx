@@ -71,7 +71,7 @@ export function Home() {
         <div className="grid-3" style={{ marginTop: '2rem' }}>
           {[
             { text: "Personalized travel planning", icon: <Users /> },
-            { text: "Budget-friendly Domestic and international tour packages", icon: <MapPin /> },
+            { text: "Budget-friendly Domestic and International tour packages", icon: <MapPin /> },
             { text: "Trusted travel guidance and support", icon: <Shield /> },
             { text: "Carefully selected stays and experiences", icon: <Heart /> },
             { text: "Hassle-free bookings and arrangements", icon: <Calendar /> },
@@ -425,6 +425,77 @@ export function Contact() {
   );
 }
 
+const ReviewCard = ({ review, idx }) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const text = review.text || '';
+  const isLong = text.length > 150;
+
+  return (
+    <div style={{
+      background: 'white',
+      borderRadius: '15px',
+      overflow: 'hidden',
+      boxShadow: '0 5px 20px rgba(0,0,0,0.08)',
+      transition: 'all 0.3s ease',
+      display: 'flex',
+      flexDirection: 'column'
+    }}
+      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.08)'; }}
+    >
+      {review.image_base64 && (
+        <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+      )}
+      <div style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
+
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(review.client_name || 'Happy Traveler')}&background=random`} alt="Customer" style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover' }} />
+            <div style={{ lineHeight: '1.3' }}>
+              <strong style={{ color: '#333', fontSize: '1.1rem' }}>{review.client_name || 'Happy Traveler'}</strong><br />
+              <small style={{ color: '#777' }}>Google Review</small>
+            </div>
+          </div>
+          <div style={{ fontSize: '18px', fontWeight: 'bold' }}>
+            <span style={{ color: '#4285F4' }}>G</span>
+            <span style={{ color: '#EA4335' }}>o</span>
+            <span style={{ color: '#FBBC05' }}>o</span>
+            <span style={{ color: '#4285F4' }}>g</span>
+            <span style={{ color: '#34A853' }}>l</span>
+            <span style={{ color: '#EA4335' }}>e</span>
+          </div>
+        </div>
+
+        <div style={{ color: '#fbbc04', fontSize: '24px', margin: '18px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span>{'★'.repeat(Math.floor(review.rating || 5))}{'☆'.repeat(5 - Math.floor(review.rating || 5))}</span>
+          <span style={{ color: '#555', fontSize: '16px', fontWeight: '500' }}>{Number(review.rating || 5).toFixed(1)}</span>
+        </div>
+
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ 
+            maxHeight: isExpanded ? '120px' : 'none', 
+            overflowY: isExpanded ? 'auto' : 'visible',
+            paddingRight: isExpanded ? '8px' : '0'
+          }}>
+            <p style={{ color: '#555', lineHeight: '1.6', margin: 0, fontSize: '1rem' }}>
+              {isExpanded || !isLong ? text : `${text.slice(0, 150)}...`}
+            </p>
+          </div>
+          {isLong && (
+            <button 
+              onClick={() => setIsExpanded(!isExpanded)} 
+              style={{ color: 'var(--nature-green)', background: 'none', border: 'none', padding: 0, marginTop: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.95rem', alignSelf: 'flex-start' }}
+            >
+              {isExpanded ? 'Show Less' : 'Read More'}
+            </button>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
 export function Reviews() {
   const [reviews, setReviews] = React.useState([]);
 
@@ -457,53 +528,7 @@ export function Reviews() {
           margin: '0 auto'
         }}>
           {reviews.map((review, idx) => (
-            <div key={idx} style={{
-              background: 'white',
-              borderRadius: '15px',
-              overflow: 'hidden',
-              boxShadow: '0 5px 20px rgba(0,0,0,0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.08)'; }}
-            >
-              {review.image_base64 && (
-                <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }} loading="lazy" />
-              )}
-              <div style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
-
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(review.client_name || 'Happy Traveler')}&background=random`} alt="Customer" style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover' }} />
-                    <div style={{ lineHeight: '1.3' }}>
-                      <strong style={{ color: '#333', fontSize: '1.1rem' }}>{review.client_name || 'Happy Traveler'}</strong><br />
-                      <small style={{ color: '#777' }}>Google Review</small>
-                    </div>
-                  </div>
-                  <div style={{ fontSize: '18px', fontWeight: 'bold' }}>
-                    <span style={{ color: '#4285F4' }}>G</span>
-                    <span style={{ color: '#EA4335' }}>o</span>
-                    <span style={{ color: '#FBBC05' }}>o</span>
-                    <span style={{ color: '#4285F4' }}>g</span>
-                    <span style={{ color: '#34A853' }}>l</span>
-                    <span style={{ color: '#EA4335' }}>e</span>
-                  </div>
-                </div>
-
-                <div style={{ color: '#fbbc04', fontSize: '24px', margin: '18px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span>{'★'.repeat(Math.floor(review.rating || 5))}{'☆'.repeat(5 - Math.floor(review.rating || 5))}</span>
-                  <span style={{ color: '#555', fontSize: '16px', fontWeight: '500' }}>{Number(review.rating || 5).toFixed(1)}</span>
-                </div>
-
-                <p style={{ color: '#555', lineHeight: '1.6', margin: 0, fontSize: '1rem' }}>
-                  {review.text}
-                </p>
-
-              </div>
-            </div>
+            <ReviewCard key={idx} review={review} idx={idx} />
           ))}
         </div>
       </section>
