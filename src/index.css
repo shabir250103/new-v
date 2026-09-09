@@ -232,7 +232,7 @@ section {
 .hero {
   height: 100vh;
   min-height: 700px;
-  background-image: url('/images/sunset_beach.png');
+  background-image: url('/images/banner.jpeg');
   background-size: cover;
   background-position: center;
   position: relative;
