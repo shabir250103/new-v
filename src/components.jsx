@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-export const MapPin = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
+export const MapPin = ({ size = 18 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 export const Calendar = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>;
 export const Users = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
 export const SearchIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
 export const Clock = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>;
-export const PhoneIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>;
+export const PhoneIcon = ({ size = 18 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>;
 export const MailIcon = ({ size = 18 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>;
 export const Leaf = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>;
 export const Shield = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
@@ -56,18 +56,18 @@ export function Footer() {
       <div className="footer-grid">
         <div className="footer-brand">
           <h3>NewV Tours and Travels</h3>
-          <p>Founded by Jeevapriya MS.</p>
+          <p>Founded by Jeevapriya MS</p>
         </div>
 
-        <div>
+        <div className="footer-contact-section">
           <h4 className="footer-title">Contact Us</h4>
           <ul className="footer-contact">
-            <li><MapPin /> <span>31A, Chelliamman Koil St, Athipet, Ambattur, Chennai - 600058</span></li>
-            <li><PhoneIcon /> <span>+91 9840636358</span></li>
-            <li><MailIcon /> <span>newvtoursandtravels@gmail.com</span></li>
+            <li><span className="footer-icon-wrap"><MapPin size={22} /></span> <span>31A, Chelliamman Koil Street,<br />Chelliamman Nagar, Athipet, Ambattur, Chennai, <br /> Tamil Nadu,<br />India - 600058</span></li>
+            <li><span className="footer-icon-wrap"><PhoneIcon size={22} /></span> <span>+91 9840636358</span></li>
+            <li><span className="footer-icon-wrap"><MailIcon size={22} /></span> <span>newvtoursandtravels@gmail.com</span></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 className="footer-title">Follow Us</h4>
           <div className="social-links" style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
@@ -85,13 +85,13 @@ export function Footer() {
 
         <div>
           <h4 className="footer-title">Our Location</h4>
-          <iframe 
-            src="https://maps.google.com/maps?q=31A,+Chelliamman+Koil+St,+Athipet,+Ambattur,+Chennai&t=&z=14&ie=UTF8&iwloc=&output=embed" 
-            width="100%" 
-            height="180" 
-            style={{ border: 0, borderRadius: '12px', marginTop: '1rem', boxShadow: 'var(--shadow-sm)' }} 
-            allowFullScreen="" 
-            loading="lazy" 
+          <iframe
+            src="https://maps.google.com/maps?q=31A,+Chelliamman+Koil+St,+Athipet,+Ambattur,+Chennai&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="180"
+            style={{ border: 0, borderRadius: '12px', marginTop: '1rem', boxShadow: 'var(--shadow-sm)' }}
+            allowFullScreen=""
+            loading="lazy"
             title="Office Location"
           ></iframe>
         </div>
@@ -129,16 +129,16 @@ export function PopupModal() {
 
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', backdropFilter: 'blur(4px)' }}>
-      <div style={{ background: 'var(--white)', borderRadius: '24px', padding: '2.5rem', maxWidth: '500px', width: '100%', position: 'relative', boxShadow: 'var(--shadow-lg)' }}>
+      <div className="popup-modal-content" style={{ background: 'var(--white)', borderRadius: '24px', padding: '2.5rem', maxWidth: '500px', width: '100%', position: 'relative', boxShadow: 'var(--shadow-lg)' }}>
         <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'var(--light-gray)', border: 'none', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', cursor: 'pointer', color: 'var(--slate-gray)' }}>✕</button>
         <h3 style={{ marginBottom: '1.5rem', color: 'var(--deep-forest-green)', fontSize: '1.8rem', textAlign: 'center' }}>Plan Your Dream Trip</h3>
         <p style={{ textAlign: 'center', color: 'var(--slate-gray)', marginBottom: '2rem' }}>Leave your details and we'll craft the perfect itinerary for you.</p>
-        <form onSubmit={(e) => { 
-          e.preventDefault(); 
+        <form onSubmit={(e) => {
+          e.preventDefault();
           const formData = new FormData(e.target);
           const text = `Hello NewV Tours and Travels! I would like to plan my dream trip.%0A%0A*Name:* ${formData.get('name')}%0A*Phone:* ${formData.get('phone')}%0A*Travel Date:* ${formData.get('date')}%0A*Destination:* ${formData.get('destination')}`;
           window.open(`https://wa.me/919840636358?text=${text}`, '_blank', 'noopener,noreferrer');
-          setIsOpen(false); 
+          setIsOpen(false);
         }} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <div>
             <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Full Name</label>

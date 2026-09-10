@@ -30,8 +30,8 @@ const AnimatedNumber = ({ end, duration, suffix = "" }) => {
 export function Home() {
   const categoryBoxes = [
     { title: "India", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAT3giq7Afbau18i9ADt-lLKyFephPrv3vkIM5evsm7A&s=10", link: "/packages", tab: "India" },
-    { title: "International", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcP9efvkJsN_vhabqAIpsX7mwccjl-MJWxf1PHnfib7g&s=10", link: "/packages", tab: "International" },
-    { title: "Wildlife Adventures in India", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThzEI00SiPIBLS1vlg9WR9UtDpneXMTZnWmfsgCSHqUg&s=10", link: "/packages", tab: "Wildlife" }
+    { title: "International", image: "/images/category_international.png", link: "/packages", tab: "International" },
+    { title: "Wildlife Adventures in India", image: "/images/category_wildlife.png", link: "/packages", tab: "Wildlife" }
   ];
 
   return (
@@ -53,7 +53,7 @@ export function Home() {
           {categoryBoxes.map((cat, idx) => (
             <div className={`dest-card category-card animate-fade-in-up delay-${(idx + 1) * 100}`} key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
               <img src={cat.image} alt={cat.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', zIndex: 0 }} />
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%)', zIndex: 1 }}></div>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
               <div className="dest-info" style={{ padding: '2rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
                 <h3 className="dest-title" style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--white)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{cat.title}</h3>
                 <Link to={cat.link} state={{ activeTab: cat.tab }} className="btn-primary" style={{ padding: '0.8rem 2rem', fontSize: '1rem', textDecoration: 'none', display: 'inline-block', border: 'none', background: 'var(--nature-green)', color: 'white' }}>View Tour Packages</Link>
@@ -114,7 +114,7 @@ export function Home() {
 
       <section className="cta-section animate-fade-in-up" style={{ margin: '5rem auto' }}>
         <h2 className="cta-title">Ready for your next adventure?</h2>
-        <p className="cta-desc">Ready to create unforgettable memories? Let our experts craft the perfect personalized itinerary for your next great adventure.</p>
+        <p className="cta-desc"> Let our experts craft the perfect personalized itinerary for you</p>
         <button
           className="btn-secondary"
           style={{ padding: '1rem 3rem', fontSize: '1.1rem', position: 'relative', zIndex: 10, cursor: 'pointer' }}
@@ -187,7 +187,7 @@ export function Packages() {
     { title: 'Golden Triangle Tour – Delhi – Agra – Jaipur', duration: '5 Nights and 6 Days', image: '/images/Pictures/Delhi.jpg' },
     { title: 'Goa', duration: '3 Nights and 4 Days', image: 'https://titosgoa.com/_next/image?url=%2Fapi%2Fuploads%2F1768282500728-why-tourists-visit-goa.png&w=1200&q=75' },
     { title: 'Gujarat – Rann Utsav', duration: '4 Nights and 5 Days', image: '/images/rann-utsav.jpg' },
-    { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: 'Varying', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
+    { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: '2Nights and 3 Days', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
     { title: 'Kashmir', duration: '4 Nights and 5 Days', image: '/images/kashmir.jpg' },
     { title: 'Kerala - Kochi - Munnar - Allepey - Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala_houseboat.png' },
     { title: 'Kodaikanal', duration: '3 Nights and 4 Days', image: '/images/kodaikanal.jpg' },
@@ -270,7 +270,7 @@ export function Packages() {
           {getActivePackages().map((pkg, idx) => (
             <div className="dest-card package-card" key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '20px' }}>
               <img src={pkg.image} alt={pkg.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
               <div style={{ padding: '1.5rem', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column' }}>
                 <h3 style={{ fontSize: '1.3rem', color: 'var(--white)', marginBottom: '0.5rem', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>{pkg.title}</h3>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--fresh-lime)', fontWeight: '600', fontSize: '0.95rem', marginBottom: '1.2rem' }}>
@@ -289,7 +289,7 @@ export function Packages() {
 export function About() {
   return (
     <>
-      <PageHeader title="About Us" subtitle="Discover the world. Discover the new you." image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1600" />
+      <PageHeader title="About Us" subtitle="Discover the world. Discover the new you." image="/images/about_bg.png" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
         <div className="about-grid">
           <div className="about-img-wrapper animate-fade-in-up">
@@ -471,8 +471,8 @@ const ReviewCard = ({ review, idx }) => {
         </div>
 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <div style={{ 
-            maxHeight: isExpanded ? '120px' : 'none', 
+          <div style={{
+            maxHeight: isExpanded ? '120px' : 'none',
             overflowY: isExpanded ? 'auto' : 'visible',
             paddingRight: isExpanded ? '8px' : '0'
           }}>
@@ -481,8 +481,8 @@ const ReviewCard = ({ review, idx }) => {
             </p>
           </div>
           {isLong && (
-            <button 
-              onClick={() => setIsExpanded(!isExpanded)} 
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
               style={{ color: 'var(--nature-green)', background: 'none', border: 'none', padding: 0, marginTop: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.95rem', alignSelf: 'flex-start' }}
             >
               {isExpanded ? 'Show Less' : 'Read More'}
@@ -514,7 +514,7 @@ export function Reviews() {
 
   return (
     <>
-      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
+      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="/images/reviews_bg.png" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
         <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travellers</h2>
 

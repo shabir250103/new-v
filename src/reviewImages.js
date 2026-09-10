@@ -1,5 +1,5 @@
 export const reviewImages = [
-  "WhatsApp Image 2026-08-28 at 11.14.41 AM.jpeg",
+  "first.jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.55 PM (1).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.55 PM (2).jpeg",
   "WhatsApp Image 2026-08-23 at 4.35.30 PM.jpeg",
