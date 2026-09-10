@@ -148,7 +148,7 @@ export function PopupModal() {
             <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Phone Number</label>
             <input required type="tel" name="phone" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div className="popup-form-row">
             <div>
               <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Travel Date</label>
               <input required type="date" name="date" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
