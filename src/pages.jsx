@@ -130,7 +130,7 @@ export function Home() {
 export function Services() {
   const services = [
     { title: "Customized Domestic Tour Itineraries", image: "/images/domestic_tours.png", desc: "Tailor-made journeys across incredible India matching your exact preferences." },
-    { title: "Customized International Tour Itineraries", image: "/images/international_tours_new.png", desc: "Seamless global travel experiences designed exclusively for you." },
+    { title: "Customized International Tour Itineraries", image: "/images/international_tours_santorini.png", desc: "Seamless global travel experiences designed exclusively for you." },
     { title: "Group Tours", image: "/images/group_tours.png", desc: "Travel with like-minded explorers on our carefully curated group adventures." },
     { title: "Hotel Bookings", image: "/images/hotel_bookings.png", desc: "Premium, comfortable, and eco-friendly stays verified by our team." },
     { title: "Transportation", image: "/images/transportation.png", desc: "Safe and reliable transfers, cabs, and coaches for a smooth ride." },
