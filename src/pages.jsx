@@ -516,7 +516,8 @@ export function Reviews() {
     <>
       <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="/images/reviews_bg.png" />
       <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
-        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travellers</h2>
+        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>Our Happy Travellers</h2>
+        <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', marginBottom: '4rem', fontSize: '1.1rem', color: 'var(--slate-gray)' }}>and their feedbacks</p>
 
         <div className="reviews-grid animate-fade-in-up delay-200">
           {reviews.map((review, idx) => (
