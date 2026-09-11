@@ -52,7 +52,7 @@ export function Home() {
         <div className="grid-3">
           {categoryBoxes.map((cat, idx) => (
             <div className={`dest-card category-card animate-fade-in-up delay-${(idx + 1) * 100}`} key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-              <img src={cat.image} alt={cat.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', zIndex: 0 }} />
+              <img src={cat.image} alt={cat.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} />
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
               <div className="dest-info" style={{ padding: '2rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
                 <h3 className="dest-title" style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--white)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{cat.title}</h3>
@@ -114,7 +114,7 @@ export function Home() {
 
       <section className="cta-section animate-fade-in-up" style={{ margin: '5rem auto' }}>
         <h2 className="cta-title">Ready for your next adventure?</h2>
-        <p className="cta-desc"> Let our experts craft the perfect personalized itinerary for you</p>
+        <p className="cta-desc"> Let our experts craft the perfect personalized itinerary for you.</p>
         <button
           className="btn-secondary"
           style={{ padding: '1rem 3rem', fontSize: '1.1rem', position: 'relative', zIndex: 10, cursor: 'pointer' }}
@@ -187,7 +187,7 @@ export function Packages() {
     { title: 'Golden Triangle Tour – Delhi – Agra – Jaipur', duration: '5 Nights and 6 Days', image: '/images/Pictures/Delhi.jpg' },
     { title: 'Goa', duration: '3 Nights and 4 Days', image: 'https://titosgoa.com/_next/image?url=%2Fapi%2Fuploads%2F1768282500728-why-tourists-visit-goa.png&w=1200&q=75' },
     { title: 'Gujarat – Rann Utsav', duration: '4 Nights and 5 Days', image: '/images/rann-utsav.jpg' },
-    { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: '2Nights and 3 Days', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
+    { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: '8 Nights and 9 Days', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
     { title: 'Kashmir', duration: '4 Nights and 5 Days', image: '/images/kashmir.jpg' },
     { title: 'Kerala - Kochi - Munnar - Allepey - Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala_houseboat.png' },
     { title: 'Kodaikanal', duration: '3 Nights and 4 Days', image: '/images/kodaikanal.jpg' },
@@ -627,13 +627,14 @@ export function Gallery() {
                       visibility: isVisible ? 'visible' : 'hidden',
                       pointerEvents: isVisible ? 'auto' : 'none',
                       cursor: isCenter ? 'default' : 'pointer',
+                      height: '100%',
                     }}
                   >
                     <img
                       src={src}
                       alt={`Gallery highlight ${idx + 1}`}
                       style={{
-                        maxHeight: '600px',
+                        maxHeight: '100%',
                         maxWidth: '85vw',
                         objectFit: 'contain',
                         display: 'block',

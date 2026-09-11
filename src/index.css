@@ -1103,11 +1103,16 @@ section {
 
   .hero {
     min-height: 500px;
+    background-image: url('/images/banner1.jpeg');
   }
 
   .hero-title-inline {
     font-size: 2.4rem;
     line-height: 1.3;
+  }
+
+  .hero-title span {
+    color: var(--white);
   }
 
   .hero-desc {
