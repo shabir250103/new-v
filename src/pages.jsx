@@ -52,7 +52,7 @@ export function Home() {
         <div className="grid-3">
           {categoryBoxes.map((cat, idx) => (
             <div className={`dest-card category-card animate-fade-in-up delay-${(idx + 1) * 100}`} key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-              <img src={cat.image} alt={cat.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} />
+              <img src={cat.image} alt={cat.title} className="dest-img category-card-image" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} />
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
               <div className="dest-info" style={{ padding: '2rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
                 <h3 className="dest-title" style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--white)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{cat.title}</h3>
@@ -68,7 +68,7 @@ export function Home() {
         <h2 className="section-title animate-fade-in-up delay-100" style={{ marginBottom: '1rem' }}>Why Choose Us?</h2>
         <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', color: 'var(--slate-gray)', fontSize: '1.1rem', marginBottom: '3rem' }}>You enjoy the journey; we'll take care of the rest.</p>
 
-        <div className="grid-3" style={{ marginTop: '2rem' }}>
+        <div className="grid-3 promise-grid" style={{ marginTop: '2rem' }}>
           {[
             { text: "Personalized travel planning", icon: <Users /> },
             { text: "Budget-friendly Domestic and International tour packages", icon: <MapPin /> },
@@ -80,39 +80,17 @@ export function Home() {
             <div
               key={idx}
               className={`why-feature-box animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
-              style={{
-                background: 'skyblue',
-                padding: '2.5rem 2rem',
-                borderRadius: '24px',
-                boxShadow: '0 10px 30px rgba(135, 206, 235, 0.3)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-12px)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(135, 206, 235, 0.5)';
-                e.currentTarget.style.background = '#00BFFF'; // Deep sky blue on hover
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(135, 206, 235, 0.3)';
-                e.currentTarget.style.background = 'skyblue';
-              }}
             >
-              <h3 style={{ fontSize: '1.3rem', color: '#0F172A', lineHeight: '1.6', fontWeight: '700', margin: 0 }}>{point.text}</h3>
+              <span className="promise-index">0{idx + 1}</span>
+              <span className="promise-icon">{point.icon}</span>
+              <h3>{point.text}</h3>
             </div>
           ))}
         </div>
       </section>
 
 
-      <section className="cta-section animate-fade-in-up" style={{ margin: '5rem auto' }}>
+      <section className="cta-section animate-fade-in-up">
         <h2 className="cta-title">Ready for your next adventure?</h2>
         <p className="cta-desc"> Let our experts craft the perfect personalized itinerary for you.</p>
         <button

@@ -52,44 +52,47 @@ export function Navbar() {
 
 export function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" style={{marginTop: '3rem',borderRadius: '10px 10px 0px 0px'}}>
       <div className="footer-grid">
         <div className="footer-brand">
-          <h3>NewV Tours and Travels</h3>
-          <p>Founded by Jeevapriya MS</p>
-        </div>
-
-        <div className="footer-contact-section">
-          <h4 className="footer-title">Contact Us</h4>
-          <ul className="footer-contact">
-            <li><span className="footer-icon-wrap"><MapPin size={22} /></span> <span>31A, Chelliamman Koil Street,<br />Chelliamman Nagar, Athipet, Ambattur, Chennai, <br /> Tamil Nadu,<br />India - 600058</span></li>
-            <li><span className="footer-icon-wrap"><PhoneIcon size={22} /></span> <span>+91 9840636358</span></li>
-            <li><span className="footer-icon-wrap"><MailIcon size={22} /></span> <span>newvtoursandtravels@gmail.com</span></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="footer-title">Follow Us</h4>
-          <div className="social-links" style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
-            <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
-              <InstagramIcon />
-            </a>
-            <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
-              <FacebookIcon />
-            </a>
-            <a href="https://wa.me/919840636358" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
-              <WhatsAppIcon />
-            </a>
+          <span className="footer-eyebrow">Travel with intention</span>
+          <h3>NewV Tours<br />and Travels</h3>
+          <p>Thoughtfully planned journeys across India and the world, created by Jeevapriya MS.</p>
+          <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="footer-cta">Start planning <span aria-hidden="true">-&gt;</span></a>
+          <div className="footer-social-links" aria-label="Social media links">
+            <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Instagram"><InstagramIcon /></a>
+            <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Facebook"><FacebookIcon /></a>
+            <a href="https://wa.me/919840636358" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="WhatsApp"><WhatsAppIcon /></a>
           </div>
         </div>
 
-        <div>
-          <h4 className="footer-title">Our Location</h4>
+        <div className="footer-nav-section">
+          <h4 className="footer-title">Explore</h4>
+          <ul className="footer-links">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/packages">Tour packages</Link></li>
+            <li><Link to="/services">Our services</Link></li>
+            <li><Link to="/about">About NewV</Link></li>
+            <li><Link to="/contact">Contact us</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-contact-section">
+          <h4 className="footer-title">Get in touch</h4>
+          <ul className="footer-contact">
+            <li><span className="footer-icon-wrap"><MapPin size={20} /></span> <span>31A, Chelliamman Koil Street,<br />Chelliamman Nagar, Athipet,<br />Ambattur, Chennai, Tamil Nadu<br />India - 600058</span></li>
+            <li><span className="footer-icon-wrap"><PhoneIcon size={20} /></span> <a href="tel:+919840636358">+91 9840636358</a></li>
+            <li><span className="footer-icon-wrap"><MailIcon size={20} /></span> <a href="mailto:newvtoursandtravels@gmail.com">newvtoursandtravels@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <div className="footer-location">
+          <h4 className="footer-title">Find our office</h4>
           <iframe
             src="https://maps.google.com/maps?q=31A,+Chelliamman+Koil+St,+Athipet,+Ambattur,+Chennai&t=&z=14&ie=UTF8&iwloc=&output=embed"
             width="100%"
-            height="180"
-            style={{ border: 0, borderRadius: '12px', marginTop: '1rem', boxShadow: 'var(--shadow-sm)' }}
+            height="140"
+            className="footer-map"
             allowFullScreen=""
             loading="lazy"
             title="Office Location"
@@ -97,7 +100,8 @@ export function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} VIYANISTIC - NewV Tours and Travels. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} NewV Tours and Travels. All rights reserved.</p>
+        <span>Designed for meaningful journeys</span>
       </div>
     </footer>
   );
@@ -116,7 +120,7 @@ export function PopupModal() {
       timer = setTimeout(() => {
         setIsOpen(true);
         sessionStorage.setItem('hasSeenModal', 'true');
-      }, 60000); // show after 1 minute (60000ms)
+      }, 1000); // show after 10 seconds (10000ms)
     }
 
     return () => {
