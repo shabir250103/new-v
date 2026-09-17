@@ -171,8 +171,8 @@ section {
 .gallery-carousel {
   position: relative;
   width: 100%;
-  max-width: 1200px;
-  height: 650px;
+  max-width: 1080px;
+  height: 520px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -314,12 +314,43 @@ section {
 
 /* Contact side panel */
 .contact-details-panel {
-  padding: 3.5rem;
+  padding: 2.5rem;
 }
 
 /* Contact form panel */
 .contact-form-panel {
-  padding: 3.5rem;
+  padding: 2.5rem;
+}
+
+.contact-page-section {
+  max-width: 1180px;
+}
+
+.review-card-content {
+  min-width: 0;
+}
+
+.contact-page-section,
+.reviews-page-section {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+
+.review-card > img {
+  height: 240px !important;
+}
+
+.review-card-content {
+  padding: 1.25rem !important;
+}
+
+.gallery-slide-image {
+  max-height: 100%;
+}
+
+.gallery-page-section {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
 }
 
 /* Primary Button */
@@ -719,6 +750,16 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.contact-info-card > div:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-info-card p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .contact-info-card:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateX(5px);
@@ -977,10 +1018,11 @@ section {
   display: flex;
   font-size: 0.85rem;
   gap: 1rem;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
   max-width: 1280px;
   padding-top: 1.5rem;
+  text-align: center;
 }
 
 .navbar-inner {
@@ -1370,6 +1412,129 @@ section {
     gap: 2rem;
   }
 
+  .contact-page-section {
+    padding: 2rem 0.75rem !important;
+  }
+
+  .contact-page-section .contact-details-panel,
+  .contact-page-section .contact-form-panel {
+    padding: 1.1rem 0.75rem;
+    border-radius: 18px;
+  }
+
+  .contact-page-section .contact-details-panel h2 {
+    font-size: 1.45rem !important;
+  }
+
+  .contact-page-section .contact-details-panel > p {
+    font-size: 0.78rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .contact-page-section .contact-info-card {
+    gap: 0.55rem;
+    padding: 0.6rem;
+  }
+
+  .contact-page-section .contact-icon-wrapper {
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+  }
+
+  .contact-page-section .contact-info-card h4 {
+    font-size: 0.82rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .contact-page-section .contact-info-card p {
+    font-size: 0.72rem !important;
+  }
+
+  .contact-page-section .contact-form-panel h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .contact-page-section form input,
+  .contact-page-section form textarea,
+  .contact-page-section .promax-input {
+    min-width: 0;
+    padding: 0.6rem;
+  }
+
+  .contact-page-section .contact-form-row {
+    gap: 0.65rem;
+  }
+
+  .contact-page-section form button {
+    font-size: 0.82rem !important;
+  }
+
+  .contact-page-section {
+    padding: 3rem 1rem !important;
+  }
+
+  .contact-page-section .contact-details-panel,
+  .contact-page-section .contact-form-panel {
+    padding: 1.5rem 1rem;
+  }
+
+  .contact-page-section .contact-details-panel h2 {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .contact-page-section .contact-details-panel > p {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .contact-page-section .contact-info-card {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .contact-page-section .contact-icon-wrapper {
+    height: 38px;
+    min-width: 38px;
+    width: 38px;
+  }
+
+  .contact-page-section .contact-info-card h4 {
+    font-size: 0.9rem !important;
+  }
+
+  .contact-page-section .contact-info-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .contact-page-section .contact-form-panel h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .contact-page-section form {
+    gap: 0.85rem !important;
+  }
+
+  .contact-page-section form label {
+    font-size: 0.82rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .contact-page-section .promax-input {
+    font-size: 0.85rem;
+    padding: 0.7rem;
+  }
+
+  .contact-page-section form button {
+    margin-top: 0.5rem !important;
+    padding: 0.8rem !important;
+    font-size: 0.9rem !important;
+  }
+
   /* Reviews grid – single column */
   .reviews-grid {
     grid-template-columns: 1fr;
@@ -1377,9 +1542,62 @@ section {
     padding: 0 1rem;
   }
 
+  .reviews-page-section {
+    padding: 3rem 0 !important;
+  }
+
+  .reviews-page-section .section-title {
+    font-size: 1.6rem;
+  }
+
+  .reviews-page-section > p {
+    font-size: 0.9rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .review-card > img {
+    height: 190px !important;
+  }
+
+  .review-card-content {
+    padding: 1rem !important;
+  }
+
+  .review-card-content strong {
+    font-size: 0.9rem !important;
+  }
+
+  .review-card-content small {
+    font-size: 0.7rem;
+  }
+
+  .review-card-content > div:nth-child(2) {
+    font-size: 18px !important;
+    margin: 0.75rem 0 !important;
+  }
+
+  .review-card-content p {
+    font-size: 0.85rem !important;
+    line-height: 1.45 !important;
+  }
+
   /* Gallery carousel */
   .gallery-carousel {
-    height: 350px;
+    height: 280px;
+  }
+
+  .gallery-page-section {
+    min-height: auto !important;
+    padding: 3rem 0 4rem !important;
+  }
+
+  .gallery-page-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem !important;
+  }
+
+  .gallery-slide-image {
+    max-width: 78vw !important;
   }
 
   .gallery-nav-btn {
@@ -1658,6 +1876,48 @@ section {
 
   .contact-form-panel {
     padding: 1.5rem 1rem;
+  }
+
+  .contact-page-section {
+    padding: 2rem 0.75rem !important;
+  }
+
+  .contact-page-section .contact-details-panel,
+  .contact-page-section .contact-form-panel {
+    padding: 1.1rem 0.75rem;
+    border-radius: 18px;
+  }
+
+  .contact-page-section .contact-details-panel h2 {
+    font-size: 1.45rem !important;
+  }
+
+  .contact-page-section .contact-info-card {
+    gap: 0.55rem;
+    padding: 0.6rem;
+  }
+
+  .contact-page-section .contact-info-card h4 {
+    font-size: 0.82rem !important;
+  }
+
+  .contact-page-section .contact-info-card p {
+    font-size: 0.72rem !important;
+  }
+
+  .contact-page-section .contact-icon-wrapper {
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+  }
+
+  .contact-page-section .contact-form-panel h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .contact-page-section .promax-input {
+    min-width: 0;
+    padding: 0.6rem;
   }
 
   .cta-section {

@@ -55,10 +55,9 @@ export function Footer() {
     <footer className="footer" style={{marginTop: '3rem',borderRadius: '10px 10px 0px 0px'}}>
       <div className="footer-grid">
         <div className="footer-brand">
-          <span className="footer-eyebrow">Travel with intention</span>
           <h3>NewV Tours<br />and Travels</h3>
           <p>Thoughtfully planned journeys across India and the world, created by Jeevapriya MS.</p>
-          <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="footer-cta">Start planning <span aria-hidden="true">-&gt;</span></a>
+          <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us <span aria-hidden="true">-&gt;</span></a>
           <div className="footer-social-links" aria-label="Social media links">
             <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Instagram"><InstagramIcon /></a>
             <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Facebook"><FacebookIcon /></a>
@@ -70,10 +69,10 @@ export function Footer() {
           <h4 className="footer-title">Explore</h4>
           <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/packages">Tour packages</Link></li>
-            <li><Link to="/services">Our services</Link></li>
+            <li><Link to="/packages">Tour Packages</Link></li>
+            <li><Link to="/services">Our Services</Link></li>
             <li><Link to="/about">About NewV</Link></li>
-            <li><Link to="/contact">Contact us</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
           </ul>
         </div>
 
@@ -99,10 +98,11 @@ export function Footer() {
           ></iframe>
         </div>
       </div>
+      <center>
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} NewV Tours and Travels. All rights reserved.</p>
-        <span>Designed for meaningful journeys</span>
       </div>
+      </center>
     </footer>
   );
 }
@@ -120,7 +120,7 @@ export function PopupModal() {
       timer = setTimeout(() => {
         setIsOpen(true);
         sessionStorage.setItem('hasSeenModal', 'true');
-      }, 1000); // show after 10 seconds (10000ms)
+      }, 30000); // show after 10 seconds (10000ms)
     }
 
     return () => {

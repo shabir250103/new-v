@@ -1,0 +1,13 @@
+Date,Area,Change Completed,Client Benefit,Responsive Coverage,Status
+2026-09-17,Home category cards,Adjusted category image behavior so travel images remain visible on mobile without unwanted side cropping,Destination images display more naturally on smaller screens,Mobile and desktop,Completed
+2026-09-17,Navbar,Made the navbar transparent across Home and all inner pages,Navigation now sits consistently over the hero imagery,Desktop tablet and mobile,Completed
+2026-09-17,Inner page headers,Repositioned page titles and subtitles below the transparent navbar,Page headings no longer overlap the navigation,Desktop tablet and mobile,Completed
+2026-09-17,Inner page hero banners,Adjusted header image heights to remove excess white space and create a more balanced banner,More polished first-viewport presentation,Desktop tablet and mobile,Completed
+2026-09-17,Navbar sizing,Reduced navbar padding and logo sizing so more page content is visible immediately,Improved first-screen visibility,Desktop tablet and mobile,Completed
+2026-09-17,Footer redesign,Created a travel-themed footer with background imagery, branding, navigation, contact links, social links, and office map,Footer now matches the visual identity of the travel website,Desktop tablet and mobile,Completed
+2026-09-17,Footer mobile layout,Arranged NewV branding at the top, Explore and Get in touch side by side, and the map below,Improved mobile alignment and reduced vertical length,Mobile,Completed
+2026-09-17,Footer mobile map,Added rounded clipping and a centered compact map treatment,Map looks like a designed card instead of a plain rectangle,Mobile,Completed
+2026-09-17,Home promise section,Redesigned Why Choose Us cards with icons, numbered accents, hover states, and cleaner spacing,Benefits are easier to scan and feel more premium,Desktop tablet and mobile,Completed
+2026-09-17,Home CTA section,Added a travel image background, green overlay, and compact call-to-action layout,Stronger visual invitation to start planning a trip,Desktop tablet and mobile,Completed
+2026-09-17,About page layout,Prevented the quote card from covering the logo and constrained the story column to avoid overflow,Logo, quote, and About content now have clear separation,Desktop tablet and mobile,Completed
+2026-09-17,Validation,Production build completed successfully after the UI updates,Confirms the updated application compiles correctly,All supported layouts,Verified

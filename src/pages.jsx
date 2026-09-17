@@ -268,7 +268,7 @@ export function About() {
   return (
     <>
       <PageHeader title="About Us" subtitle="Discover the world. Discover the new you." image="/images/about_bg.png" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
+      <section className="container contact-page-section" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
         <div className="about-grid">
           <div className="about-img-wrapper animate-fade-in-up">
             <img src="/images/logo.png" alt="NewV Tours and Travels Logo" className="about-main-img" style={{ objectFit: 'contain', padding: '2rem', background: 'var(--white)' }} />
@@ -408,7 +408,7 @@ const ReviewCard = ({ review, idx }) => {
   const isLong = text.length > 150;
 
   return (
-    <div style={{
+    <div className="review-card" style={{
       background: 'white',
       borderRadius: '15px',
       overflow: 'hidden',
@@ -423,7 +423,7 @@ const ReviewCard = ({ review, idx }) => {
       {review.image_base64 && (
         <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
       )}
-      <div style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div className="review-card-content" style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -493,7 +493,7 @@ export function Reviews() {
   return (
     <>
       <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="/images/reviews_bg.png" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
+      <section className="container reviews-page-section" style={{ minHeight: '60vh', padding: '6rem 0' }}>
         <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>Our Happy Travellers</h2>
         <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', marginBottom: '4rem', fontSize: '1.1rem', color: 'var(--slate-gray)' }}>and their feedbacks</p>
 
@@ -549,8 +549,8 @@ export function Gallery() {
   return (
     <>
       <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
-      <section style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
-        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
+      <section className="gallery-page-section" style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
+        <h2 className="section-title gallery-page-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
 
         <div className="animate-fade-in-up delay-200" style={{ padding: '0', maxWidth: '100%', margin: '0 auto', display: 'flex', justifyContent: 'center' }}>
           {allImages.length > 0 ? (
@@ -610,6 +610,7 @@ export function Gallery() {
                     }}
                   >
                     <img
+                      className="gallery-slide-image"
                       src={src}
                       alt={`Gallery highlight ${idx + 1}`}
                       style={{
