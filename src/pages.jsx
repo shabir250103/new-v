@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PageHeader, MapPin, Calendar, Users, SearchIcon, Clock, Leaf, Shield, Heart, PhoneIcon, InstagramIcon, FacebookIcon, MailIcon } from './components';
+import { PageHeader, MapPin, SearchIcon, Clock, Leaf, PhoneIcon, InstagramIcon, FacebookIcon, MailIcon } from './components';
 import { reviewImages } from './reviewImages';
 import { createClient } from '@supabase/supabase-js';
 
@@ -70,19 +70,18 @@ export function Home() {
 
         <div className="grid-3 promise-grid" style={{ marginTop: '2rem' }}>
           {[
-            { text: "Personalized travel planning", icon: <Users /> },
-            { text: "Budget-friendly Domestic and International tour packages", icon: <MapPin /> },
-            { text: "Trusted travel guidance and support", icon: <Shield /> },
-            { text: "Carefully selected stays and experiences", icon: <Heart /> },
-            { text: "Hassle-free bookings and arrangements", icon: <Calendar /> },
-            { text: "Dedicated service from start to finish", icon: <Clock /> }
+            { text: "Personalized travel planning" },
+            { text: "Budget-friendly Domestic and International tour packages" },
+            { text: "Trusted travel guidance and support" },
+            { text: "Carefully selected stays and experiences" },
+            { text: "Hassle-free bookings and arrangements" },
+            { text: "Dedicated service from start to finish" }
           ].map((point, idx) => (
             <div
               key={idx}
               className={`why-feature-box animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
             >
               <span className="promise-index">0{idx + 1}</span>
-              <span className="promise-icon">{point.icon}</span>
               <h3>{point.text}</h3>
             </div>
           ))}
