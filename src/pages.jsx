@@ -29,7 +29,7 @@ const AnimatedNumber = ({ end, duration, suffix = "" }) => {
 
 export function Home() {
   const categoryBoxes = [
-    { title: "India", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAT3giq7Afbau18i9ADt-lLKyFephPrv3vkIM5evsm7A&s=10", link: "/packages", tab: "India" },
+    { title: "India", image: "/images/hero-section-images/Taj-mahal-hero-section-pic.jpeg", link: "/packages", tab: "India" },
     { title: "International", image: "/images/category_international.png", link: "/packages", tab: "International" },
     { title: "Wildlife Adventures in India", image: "/images/category_wildlife.png", link: "/packages", tab: "Wildlife" }
   ];
