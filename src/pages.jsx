@@ -270,7 +270,7 @@ export function About() {
       <section className="container contact-page-section" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
         <div className="about-grid">
           <div className="about-img-wrapper animate-fade-in-up">
-            <img src="/images/logo.png" alt="NewV Tours and Travels Logo" className="about-main-img" style={{ objectFit: 'contain', padding: '2rem', background: 'var(--white)' }} />
+            <img src="/images/logo-transparent.png" alt="NewV Tours and Travels Logo" className="about-main-img" style={{ objectFit: 'contain', padding: '2rem', background: 'var(--white)' }} />
             <div className="about-quote-box">
               <p className="quote-text">"We create experiences that inspire."</p>
               <div className="quote-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>

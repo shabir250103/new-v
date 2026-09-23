@@ -26,7 +26,7 @@ export function Navbar() {
   return (
     <nav className={`navbar ${isInner ? 'navbar-inner' : ''}`}>
       <Link to="/" className="nav-brand">
-        <img src="/images/logo.png" alt="NewV Tours and Travels Logo" className="brand-logo" />
+        <img src="/images/logo-transparent.png" alt="NewV Tours and Travels Logo" className="brand-logo" />
       </Link>
 
       <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>

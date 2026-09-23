@@ -397,10 +397,11 @@ section {
 }
 
 .brand-logo {
-  height: 68px;
+  height: 92px;
   width: auto;
   padding: 0;
   border-radius: 5px;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -1097,7 +1098,7 @@ section {
   }
 
   .brand-logo {
-    height: 62px;
+    height: 76px;
     max-width: 80vw;
     object-fit: contain;
   }
@@ -1211,7 +1212,7 @@ section {
 
 @media (max-width: 480px) {
   .brand-logo {
-    height: 50px;
+    height: 64px;
   }
 }
 
