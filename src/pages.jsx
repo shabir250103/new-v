@@ -28,11 +28,28 @@ const AnimatedNumber = ({ end, duration, suffix = "" }) => {
 };
 
 export function Home() {
+  const [reviews, setReviews] = React.useState([]);
   const categoryBoxes = [
     { title: "India", image: "/images/hero-section-images/Taj-mahal-hero-section-pic.jpeg", link: "/packages", tab: "India" },
     { title: "International", image: "/images/category_international.png", link: "/packages", tab: "International" },
     { title: "Wildlife Adventures in India", image: "/images/category_wildlife.png", link: "/packages", tab: "Wildlife" }
   ];
+
+  React.useEffect(() => {
+    async function fetchReviews() {
+      const { data } = await supabase
+        .from('client_reviews')
+        .select('*')
+        .order('id', { ascending: false })
+        .limit(3);
+
+      if (data) {
+        setReviews(data);
+      }
+    }
+
+    fetchReviews();
+  }, []);
 
   return (
     <>
@@ -63,10 +80,30 @@ export function Home() {
         </div>
       </section>
 
-      <section className="container" style={{ margin: '5rem auto' }}>
+      <section className="container ">
+        <span className="section-subtitle animate-fade-in-up">Client Reviews</span>
+        <h2 className="section-title animate-fade-in-up delay-100">What Our Travellers Say</h2>
+        <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', color: 'var(--slate-gray)', fontSize: '1.1rem', marginBottom: '2rem' , marginTop:'-2.8rem'}}>
+          Real experiences from people who travelled with us.
+        </p>
+
+        {reviews.length > 0 && (
+          <div className="reviews-grid home-reviews-grid animate-fade-in-up delay-200">
+            {reviews.map((review, idx) => (
+              <ReviewCard key={review.id || idx} review={review} idx={idx} />
+            ))}
+          </div>
+        )}
+
+        <div className="home-reviews-link">
+          <Link to="/reviews" className="btn-primary">Learn More</Link>
+        </div>
+      </section>
+
+      <section className="container promise-section" style={{ margin: '5rem auto' }}>
         <span className="section-subtitle animate-fade-in-up">Our Promise</span>
         <h2 className="section-title animate-fade-in-up delay-100" style={{ marginBottom: '1rem' }}>Why Choose Us?</h2>
-        <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', color: 'var(--slate-gray)', fontSize: '1.1rem', marginBottom: '3rem' }}>You enjoy the journey; we'll take care of the rest.</p>
+        <p className="promise-description animate-fade-in-up delay-100" style={{ fontSize: '1.1rem', marginBottom: '3rem' }}>You enjoy the journey; we'll take care of the rest.</p>
 
         <div className="grid-3 promise-grid" style={{ marginTop: '2rem' }}>
           {[

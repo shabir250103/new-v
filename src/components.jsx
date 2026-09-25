@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import logoSvg from '../public/images/6x6 LOGO.svg?raw';
 
 export const MapPin = ({ size = 18 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 export const Calendar = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>;
@@ -26,7 +27,13 @@ export function Navbar() {
   return (
     <nav className={`navbar ${isInner ? 'navbar-inner' : ''}`}>
       <Link to="/" className="nav-brand">
-        <img src="/images/logo-transparent.png" alt="NewV Tours and Travels Logo" className="brand-logo" />
+        <span
+          className="brand-logo"
+          role="img"
+          aria-label="NewV Tours and Travels Logo"
+          draggable="false"
+          dangerouslySetInnerHTML={{ __html: logoSvg }}
+        />
       </Link>
 
       <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -57,7 +64,7 @@ export function Footer() {
         <div className="footer-brand">
           <h3>NewV Tours<br />and Travels</h3>
           <p>Thoughtfully planned journeys across India and the world, created by Jeevapriya MS.</p>
-          <a href="https://wa.me/919840636358?text=Hello%20NewV%20Tours%20and%20Travels!%20I%20would%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us <span aria-hidden="true">-&gt;</span></a>
+          <a target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us <span aria-hidden="true">-&gt;</span></a>
           <div className="footer-social-links" aria-label="Social media links">
             <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Instagram"><InstagramIcon /></a>
             <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Facebook"><FacebookIcon /></a>

@@ -163,8 +163,67 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
   padding: 0 2rem;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.home-reviews-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1100px;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.home-reviews-grid .review-card > img {
+  height: 140px !important;
+}
+
+.home-reviews-grid .review-card-content {
+  padding: 1rem !important;
+}
+
+.home-reviews-grid .review-card-content strong {
+  font-size: 0.95rem !important;
+}
+
+.home-reviews-grid .review-card-content p {
+  font-size: 0.9rem !important;
+  line-height: 1.45 !important;
+}
+
+.home-reviews-section {
+  padding: 3rem 0;
+}
+
+.home-reviews-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.promise-section .section-subtitle,
+.promise-section .section-title,
+.promise-description {
+  display: block;
+  text-align: left;
+  color: var(--nature-green);
+}
+
+@media (max-width: 992px) {
+  .home-reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .home-reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .home-reviews-section {
+    padding: 2rem 0;
+  }
 }
 
 /* Gallery carousel container */
@@ -239,10 +298,10 @@ section {
 
 /* Why choose us feature box */
 .why-feature-box {
-  background: linear-gradient(145deg, #f4fcfd 0%, var(--white) 72%);
-  border: 1px solid rgba(38, 198, 218, 0.3);
+  background: linear-gradient(145deg, #f7fcf5 0%, var(--white) 72%);
+  border: 1px solid rgba(67, 160, 71, 0.3);
   border-radius: 8px;
-  box-shadow: 0 10px 24px rgba(38, 198, 218, 0.08);
+  box-shadow: 0 10px 24px rgba(67, 160, 71, 0.08);
   min-height: 190px;
   padding: 1.5rem 1.5rem 1.75rem;
   position: relative;
@@ -251,7 +310,7 @@ section {
 }
 
 .why-feature-box::after {
-  background: var(--sky-turquoise);
+  background: var(--nature-green);
   height: 5px;
   left: 1.5rem;
   right: 1.5rem;
@@ -263,13 +322,13 @@ section {
 }
 
 .why-feature-box:hover {
-  border-color: rgba(38, 198, 218, 0.6);
-  box-shadow: 0 16px 30px rgba(38, 198, 218, 0.16);
+  border-color: rgba(67, 160, 71, 0.65);
+  box-shadow: 0 16px 30px rgba(67, 160, 71, 0.16);
   transform: translateY(-5px);
 }
 
 .promise-index {
-  color: var(--sky-turquoise);
+  color: var(--nature-green);
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -278,7 +337,7 @@ section {
 }
 
 .why-feature-box h3 {
-  color: #087f8c;
+  color: var(--deep-forest-green);
   font-size: 1.1rem;
   line-height: 1.35;
   margin: 0;
@@ -376,6 +435,8 @@ section {
   left: 0;
   width: 100%;
   padding: 1rem 2rem;
+  min-height: 104px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -397,11 +458,19 @@ section {
 }
 
 .brand-logo {
-  height: 92px;
-  width: auto;
+  display: block;
+  height: 64px;
+  width: 140px;
   padding: 0;
   border-radius: 5px;
-  object-fit: contain;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.brand-logo svg {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .nav-links {
@@ -1093,14 +1162,14 @@ section {
   .navbar {
     flex-wrap: wrap;
     padding: 0.75rem 1.25rem;
+    min-height: 84px;
     justify-content: space-between;
     align-items: center;
   }
 
   .brand-logo {
-    height: 76px;
-    max-width: 80vw;
-    object-fit: contain;
+    height: 54px;
+    width: 118px;
   }
 
   .mobile-menu-btn {
@@ -1212,7 +1281,8 @@ section {
 
 @media (max-width: 480px) {
   .brand-logo {
-    height: 64px;
+    height: 50px;
+    width: 110px;
   }
 }
 

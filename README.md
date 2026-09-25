@@ -1,4 +1,15 @@
-# React + Vite
+# NewV Tours and Travels
+
+## Changes Made
+
+| Area | Change | Status |
+| --- | --- | --- |
+| Branding | Replaced the navbar and About page branding with the NewV logo asset. | Done |
+| Logo sizing | Increased the logo size responsively for desktop, tablet, and mobile screens. | Done |
+| Navigation | Restored the transparent gradient navbar after testing a blurred glass background. | Done |
+| Why Choose Us | Removed feature icons and redesigned the cards with numbered blue panels and accent bars. | Done |
+| Routing | Added a Vercel SPA rewrite so direct visits to routes such as `/about` and `/packages` work in production. | Done |
+| Validation | Confirmed the project builds successfully with `npm run build`. | Done |
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
