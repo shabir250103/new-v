@@ -224,6 +224,23 @@ section {
   .home-reviews-section {
     padding: 2rem 0;
   }
+
+  .home-reviews-section .section-title {
+    display: block;
+    font-size: 1.65rem;
+    line-height: 1.2;
+    margin: 0.75rem 0 1.25rem !important;
+    position: relative;
+  }
+
+  .home-reviews-section > p {
+    display: block;
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+    margin: 0 auto 2rem !important;
+    max-width: 320px;
+    position: relative;
+  }
 }
 
 /* Gallery carousel container */

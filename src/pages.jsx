@@ -82,7 +82,7 @@ export function Home() {
 
       <section className="container ">
         <span className="section-subtitle animate-fade-in-up">Client Reviews</span>
-        <h2 className="section-title animate-fade-in-up delay-100">What Our Travellers Say</h2>
+        <h2 className="section-title animate-fade-in-up delay-100">What Our Travellers Say</h2> <br></br>
         <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', color: 'var(--slate-gray)', fontSize: '1.1rem', marginBottom: '2rem' , marginTop:'-2.8rem'}}>
           Real experiences from people who travelled with us.
         </p>
