@@ -64,7 +64,7 @@ export function Footer() {
         <div className="footer-brand">
           <h3>NewV Tours<br />and Travels</h3>
           <p>Thoughtfully planned journeys across India and the world, created by Jeevapriya MS.</p>
-          <a target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us <span aria-hidden="true">-&gt;</span></a>
+          <a target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us </a>
           <div className="footer-social-links" aria-label="Social media links">
             <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Instagram"><InstagramIcon /></a>
             <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Facebook"><FacebookIcon /></a>

@@ -81,11 +81,11 @@ export function Home() {
       </section>
 
       <section className="container ">
-        <span className="section-subtitle animate-fade-in-up">Client Reviews</span>
+        <span className="section-subtitle animate-fade-in-up">Our Testimonials</span>
         <h2 className="section-title animate-fade-in-up delay-100">What Our Travellers Say</h2> <br></br>
-        <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', color: 'var(--slate-gray)', fontSize: '1.1rem', marginBottom: '2rem' , marginTop:'-2.8rem'}}>
-          Real experiences from people who travelled with us.
-        </p>
+       
+
+       
 
         {reviews.length > 0 && (
           <div className="reviews-grid home-reviews-grid animate-fade-in-up delay-200">
@@ -96,7 +96,7 @@ export function Home() {
         )}
 
         <div className="home-reviews-link">
-          <Link to="/reviews" className="btn-primary">Learn More</Link>
+          <Link to="/reviews" className="btn-primary">View All</Link>
         </div>
       </section>
 
@@ -118,7 +118,6 @@ export function Home() {
               key={idx}
               className={`why-feature-box animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
             >
-              <span className="promise-index">0{idx + 1}</span>
               <h3>{point.text}</h3>
             </div>
           ))}
@@ -148,7 +147,7 @@ export function Services() {
     { title: "Group Tours", image: "/images/group_tours.png", desc: "Travel with like-minded explorers on our carefully curated group adventures." },
     { title: "Hotel Bookings", image: "/images/hotel_bookings.png", desc: "Premium, comfortable, and eco-friendly stays verified by our team." },
     { title: "Transportation", image: "/images/transportation.png", desc: "Safe and reliable transfers, cabs, and coaches for a smooth ride." },
-    { title: "Sightseeing", image: "/images/sightseeing.png", desc: "Immersive local experiences, guided tours, and hidden gems." },
+    { title: "Sightseeing", image: "https://i.pinimg.com/736x/b3/a9/27/b3a927671cc665da600068aae5e6f0d5.jpg", desc: "Immersive local experiences, guided tours, and hidden gems." },
     { title: "Flight Tickets", image: "/images/flight_tickets.png", desc: "Hassle-free flight bookings with the best routes and rates." },
     { title: "Visa Arrangements", image: "/images/visa_arrangements.png", desc: "Expert assistance for swift and smooth visa processing." }
   ];
@@ -546,6 +545,7 @@ export function Reviews() {
 export function Gallery() {
   const [reviews, setReviews] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [failedImages, setFailedImages] = React.useState(() => new Set());
 
   React.useEffect(() => {
     async function fetchReviews() {
@@ -564,7 +564,11 @@ export function Gallery() {
   const allImages = React.useMemo(() => [
     ...reviews.filter(r => r.image_base64).map(r => `data:image/jpeg;base64,${r.image_base64}`),
     ...reviewImages.map(imgName => `/images/clientreviews/${imgName}`)
-  ], [reviews]);
+  ].filter((src) => !failedImages.has(src)), [reviews, failedImages]);
+
+  React.useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, Math.max(allImages.length - 1, 0)));
+  }, [allImages.length]);
 
   React.useEffect(() => {
     if (allImages.length <= 1) return;
@@ -649,6 +653,13 @@ export function Gallery() {
                       className="gallery-slide-image"
                       src={src}
                       alt={`Gallery highlight ${idx + 1}`}
+                      onError={() => {
+                        setFailedImages((prev) => {
+                          const next = new Set(prev);
+                          next.add(src);
+                          return next;
+                        });
+                      }}
                       style={{
                         maxHeight: '100%',
                         maxWidth: '85vw',

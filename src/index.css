@@ -205,8 +205,8 @@ section {
 .promise-section .section-title,
 .promise-description {
   display: block;
-  text-align: left;
-  color: var(--nature-green);
+  text-align: center;
+  color: #176b87;
 }
 
 @media (max-width: 992px) {
@@ -315,10 +315,10 @@ section {
 
 /* Why choose us feature box */
 .why-feature-box {
-  background: linear-gradient(145deg, #f7fcf5 0%, var(--white) 72%);
-  border: 1px solid rgba(67, 160, 71, 0.3);
+  background: linear-gradient(145deg, #dff6fb 0%, #bfeaf2 100%);
+  border: 1px solid rgba(38, 198, 218, 0.3);
   border-radius: 8px;
-  box-shadow: 0 10px 24px rgba(67, 160, 71, 0.08);
+  box-shadow: 0 10px 24px rgba(38, 198, 218, 0.08);
   min-height: 190px;
   padding: 1.5rem 1.5rem 1.75rem;
   position: relative;
@@ -326,35 +326,14 @@ section {
   transition: var(--transition);
 }
 
-.why-feature-box::after {
-  background: var(--nature-green);
-  height: 5px;
-  left: 1.5rem;
-  right: 1.5rem;
-  top: 0;
-  content: '';
-  position: absolute;
-  transition: width 0.3s ease;
-  width: auto;
-}
-
 .why-feature-box:hover {
-  border-color: rgba(67, 160, 71, 0.65);
-  box-shadow: 0 16px 30px rgba(67, 160, 71, 0.16);
+  border-color: rgba(38, 198, 218, 0.65);
+  box-shadow: 0 16px 30px rgba(38, 198, 218, 0.16);
   transform: translateY(-5px);
 }
 
-.promise-index {
-  color: var(--nature-green);
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1;
-  margin-bottom: 2.5rem;
-}
-
 .why-feature-box h3 {
-  color: var(--deep-forest-green);
+  color: #176b87;
   font-size: 1.1rem;
   line-height: 1.35;
   margin: 0;
