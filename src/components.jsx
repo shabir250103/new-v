@@ -52,24 +52,24 @@ export function Navbar() {
 
 export function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" style={{marginTop:'10px', backgroundColor:'#1B5E20'}}>
       <div className="footer-grid">
-        <div className="footer-brand">
-          <h3>NewV Tours and Travels</h3>
-          <p>Founded by Jeevapriya MS.</p>
+        <div className="footer-brand" style={{color:'#FFFFFF'}}>
+          <h3 style={{color:'#FFFFFF'}}>NewV Tours and Travels</h3>
+          <p style={{color:'#EAEAEA'}}>Founded by Jeevapriya MS.</p>
         </div>
 
         <div>
-          <h4 className="footer-title">Contact Us</h4>
+          <h4 className="footer-title" style={{color:'#FFFFFF'}}>Contact Us</h4>
           <ul className="footer-contact">
-            <li><MapPin /> <span>31A, Chelliamman Koil St, Athipet, Ambattur, Chennai - 600058</span></li>
-            <li><PhoneIcon /> <span>+91 9840636358</span></li>
-            <li><MailIcon /> <span>newvtoursandtravels@gmail.com</span></li>
+            <li style={{color:'#EAEAEA'}} ><MapPin /> <span>31A, Chelliamman Koil St, Athipet, Ambattur, Chennai - 600058</span></li>
+            <li style={{color:'#EAEAEA'}} ><PhoneIcon /> <span>+91 9840636358</span></li>
+            <li style={{color:'#EAEAEA'}} ><MailIcon /> <span>newvtoursandtravels@gmail.com</span></li>
           </ul>
         </div>
         
         <div>
-          <h4 className="footer-title">Follow Us</h4>
+          <h4 className="footer-title" style={{color:'#FFFFFF'}}>Follow Us</h4>
           <div className="social-links" style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
             <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--charcoal)', transition: 'var(--transition)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--charcoal)'}>
               <InstagramIcon />
@@ -84,12 +84,12 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="footer-title">Our Location</h4>
+          <h4 className="footer-title" style={{color:'#FFFFFF'}}>Our Location</h4>
           <iframe 
             src="https://maps.google.com/maps?q=31A,+Chelliamman+Koil+St,+Athipet,+Ambattur,+Chennai&t=&z=14&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="180" 
-            style={{ border: 0, borderRadius: '12px', marginTop: '1rem', boxShadow: 'var(--shadow-sm)' }} 
+            style={{ border: 0, borderRadius: '12px', marginTop: '-12px', boxShadow: 'var(--shadow-sm)' }} 
             allowFullScreen="" 
             loading="lazy" 
             title="Office Location"
