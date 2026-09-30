@@ -105,7 +105,7 @@ export function Home() {
         <h2 className="section-title animate-fade-in-up delay-100" style={{ marginBottom: '1rem' }}>Why Choose Us?</h2>
         <p className="promise-description animate-fade-in-up delay-100" style={{ fontSize: '1.1rem', marginBottom: '3rem' }}>You enjoy the journey; we'll take care of the rest.</p>
 
-        <div className="grid-3 promise-grid" style={{ marginTop: '2rem' }}>
+        <div className="grid-3 promise-grid" style={{ marginTop: '2rem', fontSize:'10px' }}>
           {[
             { text: "Personalized travel planning" },
             { text: "Budget-friendly Domestic and International tour packages" },
@@ -202,7 +202,7 @@ export function Packages() {
     { title: 'Gujarat – Rann Utsav', duration: '4 Nights and 5 Days', image: '/images/rann-utsav.jpg' },
     { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: '8 Nights and 9 Days', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
     { title: 'Kashmir', duration: '4 Nights and 5 Days', image: '/images/kashmir.jpg' },
-    { title: 'Kerala - Kochi - Munnar - Allepey - Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala_houseboat.png' },
+    { title: 'Kerala - Kochi - Munnar - Alleppey - Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala_houseboat.png' },
     { title: 'Kodaikanal', duration: '3 Nights and 4 Days', image: '/images/kodaikanal.jpg' },
     { title: 'Meghalaya', duration: '4 Nights and 5 Days', image: '/images/Pictures/Meghalaya Nongriat.jpg' },
     { title: 'Bangalore - Mysore - Coorg', duration: '4 Nights and 5 Days', image: '/images/Pictures/Mysuru-Palace.jpeg' },
