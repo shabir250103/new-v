@@ -118,7 +118,7 @@ export function Home() {
               key={idx}
               className={`why-feature-box animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
             >
-              <h3>{point.text}</h3>
+              <h3 style={{fontSize:'25px',textAlign:'center',marginTop:'15px'}}>{point.text}</h3>
             </div>
           ))}
         </div>
