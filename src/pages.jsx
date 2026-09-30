@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { PageHeader, MapPin, Calendar, Users, SearchIcon, Clock, Leaf, Shield, Heart, PhoneIcon, InstagramIcon, FacebookIcon, MailIcon } from './components';
+import { PageHeader, MapPin, SearchIcon, Clock, Leaf, PhoneIcon, InstagramIcon, FacebookIcon, MailIcon } from './components';
 import { reviewImages } from './reviewImages';
 import { createClient } from '@supabase/supabase-js';
 
@@ -28,17 +28,34 @@ const AnimatedNumber = ({ end, duration, suffix = "" }) => {
 };
 
 export function Home() {
+  const [reviews, setReviews] = React.useState([]);
   const categoryBoxes = [
-    { title: "India", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAT3giq7Afbau18i9ADt-lLKyFephPrv3vkIM5evsm7A&s=10", link: "/packages", tab: "India" },
-    { title: "International", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcP9efvkJsN_vhabqAIpsX7mwccjl-MJWxf1PHnfib7g&s=10", link: "/packages", tab: "International" },
-    { title: "Wildlife Adventures in India", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThzEI00SiPIBLS1vlg9WR9UtDpneXMTZnWmfsgCSHqUg&s=10", link: "/packages", tab: "Wildlife" }
+    { title: "India", image: "/images/hero-section-images/Taj-mahal-hero-section-pic.jpeg", link: "/packages", tab: "India" },
+    { title: "International", image: "/images/category_international.png", link: "/packages", tab: "International" },
+    { title: "Wildlife Adventures in India", image: "/images/category_wildlife.png", link: "/packages", tab: "Wildlife" }
   ];
+
+  React.useEffect(() => {
+    async function fetchReviews() {
+      const { data } = await supabase
+        .from('client_reviews')
+        .select('*')
+        .order('id', { ascending: false })
+        .limit(3);
+
+      if (data) {
+        setReviews(data);
+      }
+    }
+
+    fetchReviews();
+  }, []);
 
   return (
     <>
       <section className="hero">
         <div className="hero-content">
-          <h1 className="hero-title animate-fade-in-up" style={{ fontSize: '4rem', lineHeight: '1.2' }}>Discover the world.<br /><span>Discover the new you.</span></h1>
+          <h1 className="hero-title hero-title-inline animate-fade-in-up">Discover the world.<br /><span>Discover the new you.</span></h1>
           <div className="hero-desc animate-fade-in-up delay-100" style={{ fontSize: '1.2rem', marginTop: '1.5rem', marginBottom: '2rem' }}>
             <p>Travel is more than just destinations—it’s a journey within, where you leave behind the ordinary, embrace the experience, and return with a new perspective on life.</p>
             <p style={{ marginTop: '1rem', fontWeight: '600' }}>Hassle-free tours, thoughtfully planned, just for you.</p>
@@ -51,9 +68,9 @@ export function Home() {
         <h2 className="section-title animate-fade-in-up delay-100">Explore Tour Packages</h2>
         <div className="grid-3">
           {categoryBoxes.map((cat, idx) => (
-            <div className={`dest-card animate-fade-in-up delay-${(idx + 1) * 100}`} key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', minHeight: '400px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-              <img src={cat.image} alt={cat.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', zIndex: 0 }} />
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%)', zIndex: 1 }}></div>
+            <div className={`dest-card category-card animate-fade-in-up delay-${(idx + 1) * 100}`} key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+              <img src={cat.image} alt={cat.title} className="dest-img category-card-image" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
               <div className="dest-info" style={{ padding: '2rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
                 <h3 className="dest-title" style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--white)', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{cat.title}</h3>
                 <Link to={cat.link} state={{ activeTab: cat.tab }} className="btn-primary" style={{ padding: '0.8rem 2rem', fontSize: '1rem', textDecoration: 'none', display: 'inline-block', border: 'none', background: 'var(--nature-green)', color: 'white' }}>View Tour Packages</Link>
@@ -63,59 +80,54 @@ export function Home() {
         </div>
       </section>
 
-      <section className="container" style={{ margin: '5rem auto' }}>
+      <section className="container ">
+        <span className="section-subtitle animate-fade-in-up">Our Testimonials</span>
+        <h2 className="section-title animate-fade-in-up delay-100">What Our Travellers Say</h2> <br></br>
+       
+
+       
+
+        {reviews.length > 0 && (
+          <div className="reviews-grid home-reviews-grid animate-fade-in-up delay-200">
+            {reviews.map((review, idx) => (
+              <ReviewCard key={review.id || idx} review={review} idx={idx} />
+            ))}
+          </div>
+        )}
+
+        <div className="home-reviews-link">
+          <Link to="/reviews" className="btn-primary">View All</Link>
+        </div>
+      </section>
+
+      <section className="container promise-section" style={{ margin: '5rem auto' }}>
         <span className="section-subtitle animate-fade-in-up">Our Promise</span>
         <h2 className="section-title animate-fade-in-up delay-100" style={{ marginBottom: '1rem' }}>Why Choose Us?</h2>
-        <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', color: 'var(--slate-gray)', fontSize: '1.1rem', marginBottom: '3rem' }}>You enjoy the journey; we'll take care of the rest.</p>
+        <p className="promise-description animate-fade-in-up delay-100" style={{ fontSize: '1.1rem', marginBottom: '3rem' }}>You enjoy the journey; we'll take care of the rest.</p>
 
-        <div className="grid-3" style={{ marginTop: '2rem' }}>
+        <div className="grid-3 promise-grid" style={{ marginTop: '2rem', fontSize:'10px' }}>
           {[
-            { text: "Personalized travel planning", icon: <Users /> },
-            { text: "Budget-friendly Domestic and International tour packages", icon: <MapPin /> },
-            { text: "Trusted travel guidance and support", icon: <Shield /> },
-            { text: "Carefully selected stays and experiences", icon: <Heart /> },
-            { text: "Hassle-free bookings and arrangements", icon: <Calendar /> },
-            { text: "Dedicated service from start to finish", icon: <Clock /> }
+            { text: "Personalized travel planning" },
+            { text: "Budget-friendly Domestic and International tour packages" },
+            { text: "Trusted travel guidance and support" },
+            { text: "Carefully selected stays and experiences" },
+            { text: "Hassle-free bookings and arrangements" },
+            { text: "Dedicated service from start to finish" }
           ].map((point, idx) => (
             <div
               key={idx}
-              className={`animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
-              style={{
-                background: 'skyblue', // Skyblue background
-                padding: '2.5rem 2rem',
-                borderRadius: '24px',
-                boxShadow: '0 10px 30px rgba(135, 206, 235, 0.3)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center', // Center vertically
-                textAlign: 'center',
-                minHeight: '180px', // Ensure consistent height
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-12px)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(135, 206, 235, 0.5)';
-                e.currentTarget.style.background = '#00BFFF'; // Deep sky blue on hover
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(135, 206, 235, 0.3)';
-                e.currentTarget.style.background = 'skyblue';
-              }}
+              className={`why-feature-box animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
             >
-              <h3 style={{ fontSize: '1.3rem', color: '#0F172A', lineHeight: '1.6', fontWeight: '700', margin: 0 }}>{point.text}</h3>
+              <h3 style={{fontSize:'25px',textAlign:'center',marginTop:'15px'}}>{point.text}</h3>
             </div>
           ))}
         </div>
       </section>
 
 
-      <section className="cta-section animate-fade-in-up" style={{ margin: '5rem auto' }}>
+      <section className="cta-section animate-fade-in-up">
         <h2 className="cta-title">Ready for your next adventure?</h2>
-        <p className="cta-desc">Ready to create unforgettable memories? Let our experts craft the perfect personalized itinerary for your next great adventure.</p>
+        <p className="cta-desc"> Let our experts craft the perfect personalized itinerary for you.</p>
         <button
           className="btn-secondary"
           style={{ padding: '1rem 3rem', fontSize: '1.1rem', position: 'relative', zIndex: 10, cursor: 'pointer' }}
@@ -131,11 +143,11 @@ export function Home() {
 export function Services() {
   const services = [
     { title: "Customized Domestic Tour Itineraries", image: "/images/domestic_tours.png", desc: "Tailor-made journeys across incredible India matching your exact preferences." },
-    { title: "Customized International Tour Itineraries", image: "/images/international_tours.png", desc: "Seamless global travel experiences designed exclusively for you." },
+    { title: "Customized International Tour Itineraries", image: "/images/international_tours_santorini.png", desc: "Seamless global travel experiences designed exclusively for you." },
     { title: "Group Tours", image: "/images/group_tours.png", desc: "Travel with like-minded explorers on our carefully curated group adventures." },
     { title: "Hotel Bookings", image: "/images/hotel_bookings.png", desc: "Premium, comfortable, and eco-friendly stays verified by our team." },
     { title: "Transportation", image: "/images/transportation.png", desc: "Safe and reliable transfers, cabs, and coaches for a smooth ride." },
-    { title: "Sightseeing", image: "/images/sightseeing.png", desc: "Immersive local experiences, guided tours, and hidden gems." },
+    { title: "Sightseeing", image: "https://i.pinimg.com/736x/b3/a9/27/b3a927671cc665da600068aae5e6f0d5.jpg", desc: "Immersive local experiences, guided tours, and hidden gems." },
     { title: "Flight Tickets", image: "/images/flight_tickets.png", desc: "Hassle-free flight bookings with the best routes and rates." },
     { title: "Visa Arrangements", image: "/images/visa_arrangements.png", desc: "Expert assistance for swift and smooth visa processing." }
   ];
@@ -146,7 +158,7 @@ export function Services() {
       <section className="container" style={{ minHeight: '50vh', textAlign: 'center', padding: '6rem 2rem' }}>
         <span className="section-subtitle animate-fade-in-up">What We Offer</span>
         <h2 className="section-title animate-fade-in-up delay-100">Comprehensive Travel Solutions</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '4rem' }}>
+        <div className="services-grid">
           {services.map((srv, idx) => (
             <div key={idx} className={`animate-fade-in-up delay-${(idx % 4 + 1) * 100}`} style={{
               background: 'var(--white)',
@@ -188,9 +200,9 @@ export function Packages() {
     { title: 'Golden Triangle Tour – Delhi – Agra – Jaipur', duration: '5 Nights and 6 Days', image: '/images/Pictures/Delhi.jpg' },
     { title: 'Goa', duration: '3 Nights and 4 Days', image: 'https://titosgoa.com/_next/image?url=%2Fapi%2Fuploads%2F1768282500728-why-tourists-visit-goa.png&w=1200&q=75' },
     { title: 'Gujarat – Rann Utsav', duration: '4 Nights and 5 Days', image: '/images/rann-utsav.jpg' },
-    { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: 'Varying', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
+    { title: 'Himachal - Manali, Shimla, Dalhousie, Dharamshala', duration: '8 Nights and 9 Days', image: 'https://assets.cntraveller.in/photos/66ab6453fe4fdad0450b3402/16:9/w_1920,c_limit/GettyImages-1580694292.jpg' },
     { title: 'Kashmir', duration: '4 Nights and 5 Days', image: '/images/kashmir.jpg' },
-    { title: 'Kerala - Kochi - Munnar - Allepey - Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala_houseboat.png' },
+    { title: 'Kerala - Kochi - Munnar - Alleppey - Thekkady', duration: '4 Nights and 5 Days', image: '/images/kerala_houseboat.png' },
     { title: 'Kodaikanal', duration: '3 Nights and 4 Days', image: '/images/kodaikanal.jpg' },
     { title: 'Meghalaya', duration: '4 Nights and 5 Days', image: '/images/Pictures/Meghalaya Nongriat.jpg' },
     { title: 'Bangalore - Mysore - Coorg', duration: '4 Nights and 5 Days', image: '/images/Pictures/Mysuru-Palace.jpeg' },
@@ -269,9 +281,9 @@ export function Packages() {
 
         <div key={activeTab} className="grid-3 animate-fade-in-up delay-300" style={{ textAlign: 'left' }}>
           {getActivePackages().map((pkg, idx) => (
-            <div className="dest-card" key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', minHeight: '350px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '20px' }}>
+            <div className="dest-card package-card" key={idx} style={{ padding: 0, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', borderRadius: '20px' }}>
               <img src={pkg.image} alt={pkg.title} className="dest-img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%)', zIndex: 1 }}></div>
               <div style={{ padding: '1.5rem', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column' }}>
                 <h3 style={{ fontSize: '1.3rem', color: 'var(--white)', marginBottom: '0.5rem', textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}>{pkg.title}</h3>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--fresh-lime)', fontWeight: '600', fontSize: '0.95rem', marginBottom: '1.2rem' }}>
@@ -290,11 +302,11 @@ export function Packages() {
 export function About() {
   return (
     <>
-      <PageHeader title="About Us" subtitle="Discover the world. Discover the new you." image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1600" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
+      <PageHeader title="About Us" subtitle="Discover the world. Discover the new you." image="/images/about_bg.png" />
+      <section className="container contact-page-section" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
         <div className="about-grid">
           <div className="about-img-wrapper animate-fade-in-up">
-            <img src="/images/logo.png" alt="NewV Tours and Travels Logo" className="about-main-img" style={{ objectFit: 'contain', padding: '2rem', background: 'var(--white)' }} />
+            <img src="/images/logo-transparent.png" alt="NewV Tours and Travels Logo" className="about-main-img" style={{ objectFit: 'contain', padding: '2rem', background: 'var(--white)' }} />
             <div className="about-quote-box">
               <p className="quote-text">"We create experiences that inspire."</p>
               <div className="quote-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
@@ -310,7 +322,7 @@ export function About() {
               </div>
             </div>
           </div>
-          <div style={{ paddingLeft: '1rem' }}>
+          <div className="about-text-col" style={{ paddingLeft: '1rem' }}>
             <span className="section-subtitle animate-fade-in-up delay-100" style={{ textAlign: 'left', marginBottom: '1rem' }}>Our Story</span>
             <h2 className="section-title animate-fade-in-up delay-200" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '3rem' }}>Travel to find your new self.</h2>
             <div className="animate-fade-in-up delay-300" style={{ color: 'var(--slate-gray)', fontSize: '1.1rem', lineHeight: '1.8' }}>
@@ -319,7 +331,7 @@ export function About() {
               <p style={{ marginBottom: '1.5rem' }}>Whether it's a family trip, a romantic getaway, a wildlife adventure, a group tour, or an international vacation, we take care of every detail so you can focus on enjoying the journey.</p>
               <p style={{ marginBottom: '1.5rem' }}>Our goal is simple: to make travel easy, meaningful, and unforgettable. From planning and bookings to on-trip support, we ensure that every journey is smooth, comfortable, and filled with memorable moments.</p>
               <p style={{ marginBottom: '1.5rem' }}>At <strong>NewV Tours and Travels</strong>, we don't just plan trips—we create experiences that inspire, connect, and stay with you long after you return home.</p>
-              <div className="animate-fade-in-up delay-400" style={{ marginTop: '3rem', display: 'flex', gap: '2rem' }}>
+              <div className="about-stats-row animate-fade-in-up delay-400">
                 <div>
                   <h4 style={{ color: 'var(--deep-forest-green)', fontSize: '2rem', fontWeight: '700' }}><AnimatedNumber end={100} duration={2000} suffix="+" /></h4>
                   <p style={{ color: 'var(--nature-green)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase' }}>Destinations</p>
@@ -363,7 +375,7 @@ export function Contact() {
         <div className="contact-grid">
 
           {/* Office Details */}
-          <div className="animate-fade-in-up" style={{ background: 'var(--charcoal)', color: 'var(--white)', padding: '3.5rem', borderRadius: '32px', boxShadow: 'var(--shadow-lg)', position: 'relative', overflow: 'hidden' }}>
+          <div className="contact-details-panel animate-fade-in-up" style={{ background: 'var(--charcoal)', color: 'var(--white)', borderRadius: '32px', boxShadow: 'var(--shadow-lg)', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '300px', height: '300px', background: 'var(--nature-green)', opacity: '0.2', borderRadius: '50%', filter: 'blur(50px)', pointerEvents: 'none' }}></div>
 
             <h2 style={{ marginBottom: '1.5rem', fontSize: '2.5rem', color: 'var(--white)', fontWeight: '700' }}>Get in Touch</h2>
@@ -395,7 +407,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="animate-fade-in-up delay-200" style={{ padding: '3.5rem', background: 'var(--white)', borderRadius: '32px', boxShadow: 'var(--shadow-lg)', border: '1px solid rgba(0,0,0,0.05)' }}>
+          <div className="contact-form-panel animate-fade-in-up delay-200" style={{ background: 'var(--white)', borderRadius: '32px', boxShadow: 'var(--shadow-lg)', border: '1px solid rgba(0,0,0,0.05)' }}>
             <h3 style={{ marginBottom: '2.5rem', color: 'var(--deep-forest-green)', fontSize: '2rem', fontWeight: '700' }}>Plan Your Trip</h3>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="animate-fade-in-up delay-300">
@@ -406,7 +418,7 @@ export function Contact() {
                 <label style={{ display: 'block', marginBottom: '0.8rem', fontWeight: '600', color: 'var(--charcoal)', fontSize: '0.95rem' }}>Phone Number</label>
                 <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 XXXXX XXXXX" className="promax-input" />
               </div>
-              <div className="animate-fade-in-up delay-500" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              <div className="contact-form-row animate-fade-in-up delay-500">
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.8rem', fontWeight: '600', color: 'var(--charcoal)', fontSize: '0.95rem' }}>Travel Date</label>
                   <input required type="date" name="date" value={formData.date} onChange={handleChange} className="promax-input" />
@@ -431,7 +443,7 @@ const ReviewCard = ({ review, idx }) => {
   const isLong = text.length > 150;
 
   return (
-    <div style={{
+    <div className="review-card" style={{
       background: 'white',
       borderRadius: '15px',
       overflow: 'hidden',
@@ -446,7 +458,7 @@ const ReviewCard = ({ review, idx }) => {
       {review.image_base64 && (
         <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
       )}
-      <div style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div className="review-card-content" style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -472,8 +484,8 @@ const ReviewCard = ({ review, idx }) => {
         </div>
 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <div style={{ 
-            maxHeight: isExpanded ? '120px' : 'none', 
+          <div style={{
+            maxHeight: isExpanded ? '120px' : 'none',
             overflowY: isExpanded ? 'auto' : 'visible',
             paddingRight: isExpanded ? '8px' : '0'
           }}>
@@ -482,8 +494,8 @@ const ReviewCard = ({ review, idx }) => {
             </p>
           </div>
           {isLong && (
-            <button 
-              onClick={() => setIsExpanded(!isExpanded)} 
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
               style={{ color: 'var(--nature-green)', background: 'none', border: 'none', padding: 0, marginTop: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.95rem', alignSelf: 'flex-start' }}
             >
               {isExpanded ? 'Show Less' : 'Read More'}
@@ -515,18 +527,12 @@ export function Reviews() {
 
   return (
     <>
-      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" />
-      <section className="container" style={{ minHeight: '60vh', padding: '6rem 0' }}>
-        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Happy Travellers</h2>
+      <PageHeader title="Client Reviews" subtitle="Real experiences from our happy travellers." image="/images/reviews_bg.png" />
+      <section className="container reviews-page-section" style={{ minHeight: '60vh', padding: '6rem 0' }}>
+        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>Our Happy Travellers</h2>
+        <p className="animate-fade-in-up delay-100" style={{ textAlign: 'center', marginBottom: '4rem', fontSize: '1.1rem', color: 'var(--slate-gray)' }}>and their feedbacks</p>
 
-        <div className="animate-fade-in-up delay-200" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '2.5rem',
-          padding: '0 2rem',
-          maxWidth: '1400px',
-          margin: '0 auto'
-        }}>
+        <div className="reviews-grid animate-fade-in-up delay-200">
           {reviews.map((review, idx) => (
             <ReviewCard key={idx} review={review} idx={idx} />
           ))}
@@ -539,6 +545,7 @@ export function Reviews() {
 export function Gallery() {
   const [reviews, setReviews] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [failedImages, setFailedImages] = React.useState(() => new Set());
 
   React.useEffect(() => {
     async function fetchReviews() {
@@ -557,7 +564,11 @@ export function Gallery() {
   const allImages = React.useMemo(() => [
     ...reviews.filter(r => r.image_base64).map(r => `data:image/jpeg;base64,${r.image_base64}`),
     ...reviewImages.map(imgName => `/images/clientreviews/${imgName}`)
-  ], [reviews]);
+  ].filter((src) => !failedImages.has(src)), [reviews, failedImages]);
+
+  React.useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, Math.max(allImages.length - 1, 0)));
+  }, [allImages.length]);
 
   React.useEffect(() => {
     if (allImages.length <= 1) return;
@@ -578,41 +589,22 @@ export function Gallery() {
   return (
     <>
       <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
-      <section style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
-        <h2 className="section-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
+      <section className="gallery-page-section" style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
+        <h2 className="section-title gallery-page-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
 
         <div className="animate-fade-in-up delay-200" style={{ padding: '0', maxWidth: '100%', margin: '0 auto', display: 'flex', justifyContent: 'center' }}>
           {allImages.length > 0 ? (
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '1200px',
-              height: '650px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              perspective: '1200px'
-            }}>
+            <div className="gallery-carousel">
               {/* Navigation Buttons */}
               <button
                 onClick={handlePrev}
-                style={{
-                  position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', zIndex: 200,
-                  background: 'rgba(255, 255, 255, 0.9)', color: 'var(--deep-forest-green)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', transition: 'all 0.3s ease', fontSize: '1.2rem'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--nature-green)'; e.currentTarget.style.color = 'white'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)'; e.currentTarget.style.color = 'var(--deep-forest-green)'; }}
+                className="gallery-nav-btn gallery-nav-prev"
               >
                 &#10094;
               </button>
               <button
                 onClick={handleNext}
-                style={{
-                  position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', zIndex: 200,
-                  background: 'rgba(255, 255, 255, 0.9)', color: 'var(--deep-forest-green)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', transition: 'all 0.3s ease', fontSize: '1.2rem'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--nature-green)'; e.currentTarget.style.color = 'white'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)'; e.currentTarget.style.color = 'var(--deep-forest-green)'; }}
+                className="gallery-nav-btn gallery-nav-next"
               >
                 &#10095;
               </button>
@@ -654,13 +646,22 @@ export function Gallery() {
                       visibility: isVisible ? 'visible' : 'hidden',
                       pointerEvents: isVisible ? 'auto' : 'none',
                       cursor: isCenter ? 'default' : 'pointer',
+                      height: '100%',
                     }}
                   >
                     <img
+                      className="gallery-slide-image"
                       src={src}
                       alt={`Gallery highlight ${idx + 1}`}
+                      onError={() => {
+                        setFailedImages((prev) => {
+                          const next = new Set(prev);
+                          next.add(src);
+                          return next;
+                        });
+                      }}
                       style={{
-                        maxHeight: '600px',
+                        maxHeight: '100%',
                         maxWidth: '85vw',
                         objectFit: 'contain',
                         display: 'block',
