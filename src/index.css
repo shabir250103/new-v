@@ -175,7 +175,10 @@ section {
 }
 
 .home-reviews-grid .review-card > img {
-  height: 140px !important;
+  height: 220px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
 .home-reviews-grid .review-card-content {

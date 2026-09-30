@@ -8,6 +8,30 @@ const supabaseUrl = 'https://xcgxoukscejpngmrnjjl.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjZ3hvdWtzY2VqcG5nbXJuampsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxNzEyODUsImV4cCI6MjEwMzc0NzI4NX0.xSMAbBTTb1QWpuScYeGJ16kdMgQ-k4Yb5xkd5AE4RV4';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+const fallbackReviews = [
+  {
+    id: 1,
+    client_name: 'Mullaiselvan',
+    rating: 5,
+    image_url: `/images/clientreviews/${reviewImages[0]}`,
+    text: 'We recently planned a 7-day trip to Vietnam, mainly staying in Hanoi and Da Nang through NewV tours and travels. Initially, we were planning to travel...'
+  },
+  {
+    id: 2,
+    client_name: 'Sasirekha Durai babu',
+    rating: 5,
+    image_url: `/images/clientreviews/${reviewImages[1]}`,
+    text: "Just got back from a memorable trip to the Andaman Islands and I can't recommend NewV tours and travels enough! From the moment we booked, everything was smooth and well planned."
+  },
+  {
+    id: 3,
+    client_name: 'Selvakumar',
+    rating: 5,
+    image_url: `/images/clientreviews/${reviewImages[2]}`,
+    text: 'Me and my friends had a great trip to Goa with clean hotel stays and comfortable van arranged by NewV. Thanks.'
+  }
+];
+
 const AnimatedNumber = ({ end, duration, suffix = "" }) => {
   const [count, setCount] = React.useState(0);
 
@@ -37,15 +61,19 @@ export function Home() {
 
   React.useEffect(() => {
     async function fetchReviews() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('client_reviews')
         .select('*')
         .order('id', { ascending: false })
         .limit(3);
 
-      if (data) {
-        setReviews(data);
+      if (error) {
+        console.error('Home reviews fetch failed:', error);
+        setReviews(fallbackReviews);
+        return;
       }
+
+      setReviews(data && data.length > 0 ? data : fallbackReviews);
     }
 
     fetchReviews();
@@ -441,6 +469,9 @@ const ReviewCard = ({ review, idx }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const text = review.text || '';
   const isLong = text.length > 150;
+  const imageSource = review.image_base64
+    ? `data:image/jpeg;base64,${review.image_base64}`
+    : review.image_url || review.image || `/images/clientreviews/${reviewImages[(idx + 1) % reviewImages.length]}`;
 
   return (
     <div className="review-card" style={{
@@ -455,8 +486,8 @@ const ReviewCard = ({ review, idx }) => {
       onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)'; }}
       onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.08)'; }}
     >
-      {review.image_base64 && (
-        <img src={`data:image/jpeg;base64,${review.image_base64}`} alt={`Client Review ${idx}`} style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+      {imageSource && (
+        <img src={imageSource} alt={`Client Review ${idx}`} style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }} loading="lazy" />
       )}
       <div className="review-card-content" style={{ padding: '24px', textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
@@ -518,9 +549,13 @@ export function Reviews() {
         .select('*')
         .order('id', { ascending: false });
 
-      if (data) {
-        setReviews(data);
+      if (error) {
+        console.error('Reviews page fetch failed:', error);
+        setReviews(fallbackReviews);
+        return;
       }
+
+      setReviews(data && data.length > 0 ? data : fallbackReviews);
     }
     fetchReviews();
   }, []);
@@ -549,14 +584,18 @@ export function Gallery() {
 
   React.useEffect(() => {
     async function fetchReviews() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('client_reviews')
         .select('*')
         .order('id', { ascending: false });
 
-      if (data) {
-        setReviews(data);
+      if (error) {
+        console.error('Gallery reviews fetch failed:', error);
+        setReviews(fallbackReviews);
+        return;
       }
+
+      setReviews(data && data.length > 0 ? data : fallbackReviews);
     }
     fetchReviews();
   }, []);
