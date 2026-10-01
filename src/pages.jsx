@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PageHeader, MapPin, SearchIcon, Clock, Leaf, PhoneIcon, InstagramIcon, FacebookIcon, MailIcon } from './components';
 import { reviewImages } from './reviewImages';
+import { galleryImages } from './galleryImages';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://xcgxoukscejpngmrnjjl.supabase.co';
@@ -110,7 +111,7 @@ export function Home() {
 
       <section className="container ">
         <span className="section-subtitle animate-fade-in-up">Our Testimonials</span>
-        <h2 className="section-title animate-fade-in-up delay-100">What Our Travellers Say</h2> <br></br>
+        <h2 className="section-title animate-fade-in-up delay-100">What Our Clients Say</h2> <br></br>
        
 
        
@@ -578,44 +579,24 @@ export function Reviews() {
 }
 
 export function Gallery() {
-  const [reviews, setReviews] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [isHovering, setIsHovering] = React.useState(false);
   const [failedImages, setFailedImages] = React.useState(() => new Set());
 
-  React.useEffect(() => {
-    async function fetchReviews() {
-      const { data, error } = await supabase
-        .from('client_reviews')
-        .select('*')
-        .order('id', { ascending: false });
-
-      if (error) {
-        console.error('Gallery reviews fetch failed:', error);
-        setReviews(fallbackReviews);
-        return;
-      }
-
-      setReviews(data && data.length > 0 ? data : fallbackReviews);
-    }
-    fetchReviews();
-  }, []);
-
-  const allImages = React.useMemo(() => [
-    ...reviews.filter(r => r.image_base64).map(r => `data:image/jpeg;base64,${r.image_base64}`),
-    ...reviewImages.map(imgName => `/images/clientreviews/${imgName}`)
-  ].filter((src) => !failedImages.has(src)), [reviews, failedImages]);
+  const allImages = React.useMemo(() => galleryImages.filter((src) => !failedImages.has(src)), [failedImages]);
 
   React.useEffect(() => {
     setCurrentIndex((prev) => Math.min(prev, Math.max(allImages.length - 1, 0)));
   }, [allImages.length]);
 
   React.useEffect(() => {
-    if (allImages.length <= 1) return;
+    if (isPaused || isHovering || allImages.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % allImages.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, [allImages.length]);
+  }, [allImages.length, isPaused, isHovering]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
@@ -627,7 +608,7 @@ export function Gallery() {
 
   return (
     <>
-      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600" />
+      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="/images/clientreviews/WhatsApp Image 2026-08-23 at 4.35.55 PM (1).jpeg" />
       <section className="gallery-page-section" style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
         <h2 className="section-title gallery-page-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
 
@@ -638,12 +619,14 @@ export function Gallery() {
               <button
                 onClick={handlePrev}
                 className="gallery-nav-btn gallery-nav-prev"
+                aria-label="Previous photo"
               >
                 &#10094;
               </button>
               <button
                 onClick={handleNext}
                 className="gallery-nav-btn gallery-nav-next"
+                aria-label="Next photo"
               >
                 &#10095;
               </button>
@@ -669,9 +652,28 @@ export function Gallery() {
 
                 return (
                   <div
-                    key={idx}
+                    key={src}
+                    role="button"
+                    tabIndex={isVisible ? 0 : -1}
+                    aria-label={isCenter ? (isPaused ? 'Resume slideshow' : 'Pause slideshow') : `View photo ${idx + 1} and pause slideshow`}
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === 'mouse') setIsHovering(true);
+                    }}
+                    onPointerLeave={() => setIsHovering(false)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        event.currentTarget.click();
+                      }
+                    }}
                     onClick={() => {
-                      if (!isCenter && isVisible) setCurrentIndex(idx);
+                      if (!isVisible) return;
+                      if (isCenter) {
+                        setIsPaused((paused) => !paused);
+                      } else {
+                        setCurrentIndex(idx);
+                        setIsPaused(true);
+                      }
                     }}
                     style={{
                       position: 'absolute',
@@ -684,7 +686,7 @@ export function Gallery() {
                       opacity: opacity,
                       visibility: isVisible ? 'visible' : 'hidden',
                       pointerEvents: isVisible ? 'auto' : 'none',
-                      cursor: isCenter ? 'default' : 'pointer',
+                      cursor: 'pointer',
                       height: '100%',
                     }}
                   >
@@ -735,7 +737,7 @@ export function Gallery() {
               </div>
             </div>
           ) : (
-            <p style={{ textAlign: 'center', color: 'var(--slate-gray)' }}>Loading gallery...</p>
+            <p style={{ textAlign: 'center', color: 'var(--slate-gray)' }}>Gallery photos are currently unavailable.</p>
           )}
         </div>
       </section>

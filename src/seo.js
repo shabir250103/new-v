@@ -3,8 +3,8 @@ export const siteName = 'NewV Tours and Travels';
 
 export const seoPages = {
   '/': {
-    title: 'NewV Tours and Travels | Tour Packages from Chennai',
-    description: 'Plan your next journey with NewV Tours and Travels in Chennai. Explore domestic and international tour packages, wildlife safaris and travel services.',
+    title: 'NewV - Your Favourite Tour Planner',
+    description: 'NewV Tours and Travels is a trustworthy travel company in Chennai offering budget friendly tour packages across India and the world with an excellent customer satisfaction.',
   },
   '/services': {
     title: 'Travel Services | NewV Tours and Travels',
