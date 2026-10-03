@@ -136,16 +136,17 @@ export function Home() {
 
         <div className="grid-3 promise-grid" style={{ marginTop: '2rem', fontSize:'10px' }}>
           {[
-            { text: "Personalized travel planning" },
-            { text: "Budget-friendly Domestic and International tour packages" },
-            { text: "Trusted travel guidance and support" },
-            { text: "Carefully selected stays and experiences" },
-            { text: "Hassle-free bookings and arrangements" },
-            { text: "Dedicated service from start to finish" }
+            { text: "Personalized travel planning", image: "/images/tour_packages_header.png" },
+            { text: "Budget-friendly Domestic and International tour packages", image: "/images/international_tours_santorini.png" },
+            { text: "Trusted travel guidance and support", image: "/images/sightseeing.png" },
+            { text: "Carefully selected stays and experiences", image: "/images/hotel_bookings.png" },
+            { text: "Hassle-free bookings and arrangements", image: "/images/flight_tickets.png" },
+            { text: "Dedicated service from start to finish", image: "/images/transportation.png" }
           ].map((point, idx) => (
             <div
               key={idx}
               className={`why-feature-box animate-fade-in-up delay-${(idx % 3 + 1) * 100}`}
+              style={{ '--why-image': `url("${point.image}")` }}
             >
               <h3 style={{fontSize:'25px',textAlign:'center',marginTop:'15px'}}>{point.text}</h3>
             </div>
