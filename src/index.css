@@ -490,9 +490,9 @@ section {
 
 /* Hero Section */
 .hero {
-  height: 100vh;
-  min-height: 700px;
-  background-image: url('/images/banner.jpeg');
+  height: clamp(560px, 65vw, 720px);
+  min-height: 560px;
+  background-image: url('/images/home-banner-desktop.jpeg');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -506,7 +506,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(27, 94, 32, 0.4), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(to right, rgba(11, 54, 64, 0.18), rgba(0, 0, 0, 0.04));
 }
 
 .hero-content {
@@ -1365,8 +1365,10 @@ section {
   }
 
   .hero {
+    height: min(72svh, 620px);
     min-height: 500px;
-    background-image: url('/images/banner1.jpeg');
+    background-image: url('/images/home-banner-mobile.jpeg');
+    background-position: center;
   }
 
   .hero-title-inline {
