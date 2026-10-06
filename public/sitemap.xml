@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://newvtoursandtravels.com/</loc></url>
-  <url><loc>https://newvtoursandtravels.com/services</loc></url>
-  <url><loc>https://newvtoursandtravels.com/packages</loc></url>
-  <url><loc>https://newvtoursandtravels.com/about</loc></url>
-  <url><loc>https://newvtoursandtravels.com/reviews</loc></url>
-  <url><loc>https://newvtoursandtravels.com/gallery</loc></url>
-  <url><loc>https://newvtoursandtravels.com/contact</loc></url>
+  <url><loc>https://newvtoursandtravels.com/</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/services</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/packages</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/packages/international</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/packages/wildlife</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/about</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/reviews</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/gallery</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://newvtoursandtravels.com/contact</loc><lastmod>2026-10-06</lastmod></url>
 </urlset>

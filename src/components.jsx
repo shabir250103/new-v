@@ -1,6 +1,6 @@
+import { localToday, validateEnquiryForm, enquiryUrl } from './enquiryValidation.js';
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import logoSvg from '../public/images/6x6 LOGO.svg?raw';
 
 export const MapPin = ({ size = 18 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 export const Calendar = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>;
@@ -27,20 +27,28 @@ export function Navbar() {
   return (
     <nav className={`navbar ${isInner ? 'navbar-inner' : ''}`}>
       <Link to="/" className="nav-brand">
-        <span
+        <img
+          src="/images/newv-logo.png"
           className="brand-logo"
-          role="img"
-          aria-label="NewV Tours and Travels Logo"
+          alt="NewV Tours and Travels"
+          width="1201"
+          height="609"
           draggable="false"
-          dangerouslySetInnerHTML={{ __html: logoSvg }}
         />
       </Link>
 
-      <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+      <button
+        type="button"
+        className="mobile-menu-btn"
+        aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="primary-navigation"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
         {isMobileMenuOpen ? <XIcon /> : <MenuIcon />}
       </button>
 
-      <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
+      <ul id="primary-navigation" className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
         <li><NavLink to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</NavLink></li>
         <li><NavLink to="/services" onClick={() => setIsMobileMenuOpen(false)}>Services</NavLink></li>
         <li><NavLink to="/packages" onClick={() => setIsMobileMenuOpen(false)}>Our Packages</NavLink></li>
@@ -64,7 +72,7 @@ export function Footer() {
         <div className="footer-brand">
           <h3>NewV Tours<br />and Travels</h3>
           <p>Thoughtfully planned journeys across India and the world, created by Jeevapriya MS.</p>
-          <a target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us </a>
+          <a href="https://www.instagram.com/newv_tours_and_travels/" target="_blank" rel="noopener noreferrer" className="footer-cta">Follow Us</a>
           <div className="footer-social-links" aria-label="Social media links">
             <a href="https://www.instagram.com/newv_tours_and_travels?utm_source=qr&igsi=d2RkOWZ0enE0OGQ=" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Instagram"><InstagramIcon /></a>
             <a href="https://www.facebook.com/share/1CKyzXyctd/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Facebook"><FacebookIcon /></a>
@@ -144,29 +152,29 @@ export function PopupModal() {
         <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'var(--light-gray)', border: 'none', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', cursor: 'pointer', color: 'var(--slate-gray)' }}>✕</button>
         <h3 style={{ marginBottom: '1.5rem', color: 'var(--deep-forest-green)', fontSize: '1.8rem', textAlign: 'center' }}>Plan Your Dream Trip</h3>
         <p style={{ textAlign: 'center', color: 'var(--slate-gray)', marginBottom: '2rem' }}>Leave your details and we'll craft the perfect itinerary for you.</p>
-        <form onSubmit={(e) => {
+        <form noValidate onInput={(e) => e.target.setCustomValidity?.('')} onSubmit={(e) => {
           e.preventDefault();
-          const formData = new FormData(e.target);
-          const text = `Hello NewV Tours and Travels! I would like to plan my dream trip.%0A%0A*Name:* ${formData.get('name')}%0A*Phone:* ${formData.get('phone')}%0A*Travel Date:* ${formData.get('date')}%0A*Destination:* ${formData.get('destination')}`;
-          window.open(`https://wa.me/919840636358?text=${text}`, '_blank', 'noopener,noreferrer');
+          const values = validateEnquiryForm(e.currentTarget);
+          if (!values) return;
+          window.open(enquiryUrl(values), '_blank', 'noopener,noreferrer');
           setIsOpen(false);
         }} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Full Name</label>
-            <input required type="text" name="name" placeholder="Enter your full name" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+            <label htmlFor="popup-name" style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Full Name</label>
+            <input required type="text" id="popup-name" name="name" maxLength={100} autoComplete="name" placeholder="Enter your full name" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Phone Number</label>
-            <input required type="tel" name="phone" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+            <label htmlFor="popup-phone" style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Phone Number</label>
+            <input required type="tel" id="popup-phone" name="phone" maxLength={25} autoComplete="tel" placeholder="+91 XXXXX XXXXX" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
           </div>
           <div className="popup-form-row">
             <div>
-              <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Travel Date</label>
-              <input required type="date" name="date" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+              <label htmlFor="popup-date" style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Travel Date</label>
+              <input required type="date" id="popup-date" name="date" min={localToday()} style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
             </div>
             <div>
-              <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Destination</label>
-              <input required type="text" name="destination" placeholder="e.g. Kerala, Bali" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
+              <label htmlFor="popup-destination" style={{ display: 'block', marginBottom: '0.4rem', fontWeight: '600', color: 'var(--slate-gray)' }}>Destination</label>
+              <input required type="text" id="popup-destination" name="destination" maxLength={120} placeholder="e.g. Kerala, Bali" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid var(--light-gray)', boxSizing: 'border-box', fontSize: '1rem' }} />
             </div>
           </div>
           <button type="submit" className="btn-primary" style={{ marginTop: '1rem', padding: '1rem', fontSize: '1.1rem', borderRadius: '8px', width: '100%' }}>Send Enquiry via WhatsApp</button>
@@ -176,10 +184,16 @@ export function PopupModal() {
   );
 }
 
-export function PageHeader({ title, subtitle, image }) {
+export function PageHeader({ title, subtitle, image, className = '' }) {
   return (
-    <section className="page-header" style={{ backgroundImage: `url(${image || '/hero.png'})` }}>
+    <section className={`page-header ${className}`.trim()} style={{ backgroundImage: `url(${image || '/hero.png'})` }}>
       <div className="page-header-content">
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><Link to="/">Home</Link></li>
+            <li aria-current="page">{title}</li>
+          </ol>
+        </nav>
         <h1>{title}</h1>
         {subtitle && <p>{subtitle}</p>}
       </div>

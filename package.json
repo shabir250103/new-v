@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/generate-seo.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.112.4",
     "jimp": "^1.6.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "oxlint": "^1.75.0",
+    "sharp": "^0.35.5",
     "vite": "^8.2.0"
   }
 }

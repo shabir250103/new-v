@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getSeo } from './seo.js';
+import { getSeo, structuredDataFor } from './seo.js';
 
 export default function Seo() {
   const { pathname } = useLocation();
@@ -11,11 +11,16 @@ export default function Seo() {
     const metadata = {
       'name:description': seo.description,
       'name:robots': seo.robots,
+      'name:googlebot': seo.robots,
       'property:og:title': seo.title,
       'property:og:description': seo.description,
       'property:og:url': seo.canonical,
+      'property:og:image': seo.image,
+      'property:og:image:alt': seo.imageAlt,
       'name:twitter:title': seo.title,
       'name:twitter:description': seo.description,
+      'name:twitter:image': seo.image,
+      'name:twitter:image:alt': seo.imageAlt,
     };
     for (const [key, value] of Object.entries(metadata)) {
       const separator = key.indexOf(':');
@@ -43,6 +48,11 @@ export default function Seo() {
       canonical.href = seo.canonical;
     } else {
       canonical?.remove();
+    }
+
+    const structuredData = document.getElementById('seo-structured-data');
+    if (structuredData) {
+      structuredData.textContent = JSON.stringify(structuredDataFor(pathname, seo));
     }
   }, [pathname]);
 

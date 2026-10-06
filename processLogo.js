@@ -11,8 +11,6 @@ async function processImage() {
       const r = this.bitmap.data[idx + 0];
       const g = this.bitmap.data[idx + 1];
       const b = this.bitmap.data[idx + 2];
-      const a = this.bitmap.data[idx + 3];
-      
       // If the pixel is very light (close to white)
       if (r > 230 && g > 230 && b > 230) {
         // Make it transparent

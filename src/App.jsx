@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar, Footer, PopupModal } from './components';
 import { Home, Services, Packages, About, Contact, Reviews, Gallery } from './pages';
 import './index.css';
@@ -15,9 +15,9 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+export function SiteApp() {
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <Seo />
       <div className="app-container">
@@ -28,6 +28,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/packages" element={<Packages />} />
+            <Route path="/packages/international" element={<Packages />} />
+            <Route path="/packages/wildlife" element={<Packages />} />
             <Route path="/about" element={<About />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/gallery" element={<Gallery />} />
@@ -37,7 +39,15 @@ function App() {
         </main>
         <Footer />
       </div>
-    </Router>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <SiteApp />
+    </BrowserRouter>
   );
 }
 
