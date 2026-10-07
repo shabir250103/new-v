@@ -617,7 +617,7 @@ export function Gallery() {
 
   return (
     <>
-      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="/images/gallery-header.webp" className="gallery-page-header" />
+      <PageHeader title="Photo Gallery" subtitle="Memories captured by our travellers." image="/images/gallery-header-v2.webp" className="gallery-page-header" />
       <section className="gallery-page-section" style={{ minHeight: '60vh', padding: '6rem 0', overflow: 'hidden', width: '100%' }}>
         <h2 className="section-title gallery-page-title animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>Travel Highlights</h2>
 
