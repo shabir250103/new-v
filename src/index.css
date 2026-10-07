@@ -2093,23 +2093,47 @@ section {
 
 @media (max-width: 768px) {
   .promise-stage {
-    background-position: 58% center;
+    align-items: flex-end;
+    background-position: center;
     border-width: 4px;
     border-radius: 24px;
-    padding: 1.25rem;
+    min-height: 500px;
+    padding: 1rem;
   }
 
   .promise-grid {
-    gap: 1rem;
-    grid-template-columns: 1fr;
+    align-items: flex-end;
+    display: flex;
+    gap: 0.85rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.25rem 0.15rem 0.5rem;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .promise-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .why-feature-box {
-    padding: 1.4rem 1.2rem;
+    flex: 0 0 min(82vw, 320px);
+    min-height: auto;
+    padding: 1.25rem 1.1rem;
+    scroll-snap-align: start;
+  }
+
+  .why-feature-box:hover {
+    transform: none;
   }
 
   .why-feature-box h3 {
-    font-size: 1.45rem;
+    font-size: 1.3rem;
+  }
+
+  .why-feature-box p {
+    font-size: 0.9rem;
   }
 
 }
