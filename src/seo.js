@@ -20,8 +20,8 @@ export const seoPages = {
     title: 'India Tour Packages from Chennai | NewV',
     description: 'Explore custom India holidays from Chennai, including Kerala, Kashmir, Rajasthan, Goa and more. Ask NewV to tailor the itinerary and bookings.',
     label: 'India Tour Packages',
-    image: '/images/hero-section-images/Taj-mahal-hero-section-pic.jpeg',
-    imageAlt: 'Taj Mahal in Agra, India',
+    image: '/images/india-tour-header-v2.webp',
+    imageAlt: 'Udaipur palace beside Lake Pichola at sunrise',
   },
   '/packages/international': {
     title: 'International Tour Packages from Chennai | NewV',

@@ -311,7 +311,7 @@ export function Packages() {
       <PageHeader
         title={activeTab === 'India' ? 'India Tour Packages' : activeTab === 'International' ? 'International Tour Packages' : 'Wildlife Tour Packages'}
         subtitle="Thoughtfully planned itineraries for everyone."
-        image={activeTab === 'India' ? '/images/hero-section-images/Taj-mahal-hero-section-pic.jpeg' : activeTab === 'International' ? '/images/international-tours-santorini.webp' : '/images/category-wildlife.webp'}
+        image={activeTab === 'India' ? '/images/india-tour-header-v2.webp' : activeTab === 'International' ? '/images/international-tours-santorini.webp' : '/images/category-wildlife.webp'}
       />
       <section className="container" style={{ minHeight: '50vh', textAlign: 'center', paddingTop: '5rem' }}>
         <h2 className="animate-fade-in-up">Find Your Perfect Package</h2>
@@ -350,7 +350,7 @@ export function About() {
       <section className="container contact-page-section" style={{ minHeight: '60vh', padding: '6rem 2rem' }}>
         <div className="about-grid">
           <div className="about-img-wrapper animate-fade-in-up">
-            <img src="/images/newv-logo.png" alt="NewV Tours and Travels logo" className="about-main-img" width="1201" height="609" loading="lazy" decoding="async" style={{ objectFit: 'contain', padding: '2rem', background: 'var(--white)' }} />
+            <img src="/images/newv-logo.png" alt="NewV Tours and Travels logo" className="about-main-img" width="1201" height="609" loading="lazy" decoding="async" />
             <div className="about-quote-box">
               <p className="quote-text">"We create experiences that inspire."</p>
               <div className="quote-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
