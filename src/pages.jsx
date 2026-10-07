@@ -183,7 +183,7 @@ export function Services() {
     { title: "Group Tours", image: "/images/group-tours.webp", desc: "Travel with like-minded explorers on our carefully curated group adventures." },
     { title: "Hotel Bookings", image: "/images/hotel-bookings.webp", desc: "Premium, comfortable, and eco-friendly stays verified by our team." },
     { title: "Transportation", image: "/images/transportation.webp", desc: "Safe and reliable transfers, cabs, and coaches for a smooth ride." },
-    { title: "Sightseeing", image: "/images/sightseeing.webp", desc: "Immersive local experiences, guided tours, and hidden gems." },
+    { title: "Sightseeing", image: "/images/sightseeing-travellers.webp", desc: "Immersive local experiences, guided tours, and hidden gems." },
     { title: "Flight Tickets", image: "/images/flight-tickets.webp", desc: "Hassle-free flight bookings with the best routes and rates." },
     { title: "Visa Arrangements", image: "/images/visa-arrangements.webp", desc: "Expert assistance for swift and smooth visa processing." }
   ];
