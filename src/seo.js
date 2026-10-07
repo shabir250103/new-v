@@ -55,8 +55,8 @@ export const seoPages = {
     title: 'Traveller Photo Gallery | NewV Tours and Travels',
     description: 'Browse genuine holiday memories and travel highlights shared by NewV Tours and Travels clients across India and international destinations.',
     label: 'Photo Gallery',
-    image: '/images/gallery-header-v2.webp',
-    imageAlt: 'Travellers overlooking a tropical island coast at sunset',
+    image: '/images/gallery-header-v3.webp',
+    imageAlt: 'Tropical island coast and turquoise bay at sunset',
   },
   '/contact': {
     title: 'Contact NewV Travel Agency in Chennai',
