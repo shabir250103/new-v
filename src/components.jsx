@@ -188,12 +188,6 @@ export function PageHeader({ title, subtitle, image, className = '' }) {
   return (
     <section className={`page-header ${className}`.trim()} style={{ backgroundImage: `url(${image || '/hero.png'})` }}>
       <div className="page-header-content">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <ol>
-            <li><Link to="/">Home</Link></li>
-            <li aria-current="page">{title}</li>
-          </ol>
-        </nav>
         <h1>{title}</h1>
         {subtitle && <p>{subtitle}</p>}
       </div>

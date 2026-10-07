@@ -14,7 +14,6 @@ const images = [
   ['group_tours.png', 'group-tours.webp', 720],
   ['hotel_bookings.png', 'hotel-bookings.webp', 720],
   ['transportation.png', 'transportation.webp', 720],
-  ['sightseeing.png', 'sightseeing.webp', 720],
   ['flight_tickets.png', 'flight-tickets.webp', 720],
   ['visa_arrangements.png', 'visa-arrangements.webp', 720],
   ['category_international.png', 'category-international.webp', 900],

@@ -1161,42 +1161,6 @@ section {
   transform: translateY(70px);
 }
 
-.breadcrumbs {
-  margin-bottom: 0.75rem;
-}
-
-.breadcrumbs ol {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.breadcrumbs li {
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-
-.breadcrumbs li + li::before {
-  content: '/';
-  margin-right: 0.5rem;
-  opacity: 0.7;
-}
-
-.breadcrumbs a {
-  color: var(--white);
-  text-decoration: none;
-}
-
-.breadcrumbs a:hover {
-  text-decoration: underline;
-}
-
 .page-header-content h1 {
   font-size: 3.5rem;
   font-weight: 700;
@@ -2124,10 +2088,6 @@ section {
 }
 
 @media (max-width: 768px) {
-  .breadcrumbs {
-    display: none;
-  }
-
   .promise-stage {
     background-position: 58% center;
     border-width: 4px;
