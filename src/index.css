@@ -2124,6 +2124,10 @@ section {
 }
 
 @media (max-width: 768px) {
+  .breadcrumbs {
+    display: none;
+  }
+
   .promise-stage {
     background-position: 58% center;
     border-width: 4px;
