@@ -22,19 +22,29 @@ function reviewInitials(name = 'Happy Traveller') {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
 }
 
+const reviewerImageByName = {
+  mullaiselvan: '/images/clientreviews/review-mullaiselvan.webp',
+  sasirekhaduraibabu: '/images/clientreviews/review-sasirekha-duraibabu.webp',
+};
+
+function reviewerImage(name = '') {
+  const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return reviewerImageByName[key];
+}
+
 const fallbackReviews = [
   {
     id: 1,
     client_name: 'Mullaiselvan',
     rating: 5,
-    image_url: `/images/clientreviews/${reviewImages[0]}`,
+    image_url: reviewerImage('Mullaiselvan'),
     text: 'We recently planned a 7-day trip to Vietnam, mainly staying in Hanoi and Da Nang through NewV tours and travels. Initially, we were planning to travel...'
   },
   {
     id: 2,
-    client_name: 'Sasirekha Durai babu',
+    client_name: 'Sasirekha Duraibabu',
     rating: 5,
-    image_url: `/images/clientreviews/${reviewImages[1]}`,
+    image_url: reviewerImage('Sasirekha Duraibabu'),
     text: "Just got back from a memorable trip to the Andaman Islands and I can't recommend NewV tours and travels enough! From the moment we booked, everything was smooth and well planned."
   },
   {
@@ -354,7 +364,7 @@ export function About() {
             <div className="about-quote-box">
               <p className="quote-text">"We create experiences that inspire."</p>
               <div className="quote-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
-                <span>— Jeevapriya MS, Founder</span>
+                <span><strong>NewV Tours and Travels</strong> is a travel brand under <strong>Viyanistic</strong>, founded by <strong>Jeevapriya MS</strong>.</span>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                   <a href="https://www.instagram.com/jeevapriya_ms?utm_source=qr&igsi=MWttYTVxaXB0a3dvZw==" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--deep-forest-green)', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--nature-green)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--deep-forest-green)'}>
                     <InstagramIcon />
@@ -370,8 +380,8 @@ export function About() {
             <span className="section-subtitle animate-fade-in-up delay-100" style={{ textAlign: 'left', marginBottom: '1rem' }}>Our Story</span>
             <h2 className="section-title animate-fade-in-up delay-200" style={{ textAlign: 'left', marginBottom: '2rem', fontSize: '3rem' }}>Travel to find your new self.</h2>
             <div className="animate-fade-in-up delay-300" style={{ color: 'var(--slate-gray)', fontSize: '1.1rem', lineHeight: '1.8' }}>
-              <p style={{ marginBottom: '1.5rem' }}>At <strong>NewV Tours and Travels</strong>, we believe that travel is more than just destinations—it’s a journey within, where you leave behind the ordinary, embrace the experience, and return with a new perspective on life.</p>
-              <p style={{ marginBottom: '1.5rem' }}>Founded by <strong>Jeevapriya MS</strong>, with a passion for exploration and a commitment to exceptional service, we specialize in crafting seamless travel experiences that are tailored to your preferences, budget, and travel style.</p>
+              <p style={{ marginBottom: '1.5rem' }}>Driven by a passion for exploration and a commitment to exceptional service, we craft seamless travel experiences tailored to your preferences, budget, and travel style.</p>
+              <p style={{ marginBottom: '1.5rem' }}>We believe that travel is more than just destinations—it’s a journey within, where you leave behind the ordinary, embrace the experience, and return with a new perspective on life.</p>
               <p style={{ marginBottom: '1.5rem' }}>Whether it's a family trip, a romantic getaway, a wildlife adventure, a group tour, or an international vacation, we take care of every detail so you can focus on enjoying the journey.</p>
               <p style={{ marginBottom: '1.5rem' }}>Our goal is simple: to make travel easy, meaningful, and unforgettable. From planning and bookings to on-trip support, we ensure that every journey is smooth, comfortable, and filled with memorable moments.</p>
               <p style={{ marginBottom: '1.5rem' }}>At <strong>NewV Tours and Travels</strong>, we don't just plan trips—we create experiences that inspire, connect, and stay with you long after you return home.</p>
@@ -488,7 +498,7 @@ const ReviewCard = ({ review, idx }) => {
   const isLong = text.length > 150;
   const imageSource = review.image_base64
     ? `data:image/jpeg;base64,${review.image_base64}`
-    : review.image_url || review.image || `/images/clientreviews/${reviewImages[(idx + 1) % reviewImages.length]}`;
+    : review.image_url || review.image || reviewerImage(review.client_name) || `/images/clientreviews/${reviewImages[(idx + 1) % reviewImages.length]}`;
 
   return (
     <div className="review-card" style={{
@@ -562,16 +572,24 @@ export function Reviews() {
   const [reviews, setReviews] = React.useState(fallbackReviews);
 
   React.useEffect(() => {
+    let cancelled = false;
+
     async function fetchReviews() {
       try {
-        const data = await fetchClientReviews();
-        setReviews(data && data.length > 0 ? data : fallbackReviews);
+        const [data] = await Promise.all([
+          fetchClientReviews(),
+          new Promise((resolve) => setTimeout(resolve, 2000)),
+        ]);
+        if (!cancelled) setReviews(data && data.length > 0 ? data : fallbackReviews);
       } catch (error) {
         console.error('Reviews page fetch failed:', error);
-        setReviews(fallbackReviews);
+        if (!cancelled) setReviews(fallbackReviews);
       }
     }
     fetchReviews();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

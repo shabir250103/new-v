@@ -3,7 +3,7 @@ export const siteName = 'NewV Tours and Travels';
 
 export const seoPages = {
   '/': {
-    title: 'Chennai Travel Agency & Custom Tours | NewV',
+    title: 'NewV – Favourite Travel Planner',
     description: 'Plan personalised India, international and wildlife holidays with NewV Tours and Travels in Chennai. Get itinerary, booking and on-trip support.',
     label: 'Home',
     image: '/images/home-banner-desktop.jpeg',
@@ -39,7 +39,7 @@ export const seoPages = {
   },
   '/about': {
     title: 'About NewV Tours and Travels | Chennai',
-    description: 'Meet founder Jeevapriya MS and learn how NewV Tours and Travels plans personalised, supported journeys from Chennai to India and the world.',
+    description: 'NewV Tours and Travels is a Viyanistic travel brand founded by Jeevapriya MS, planning personalised journeys from Chennai to India and the world.',
     label: 'About Us',
     image: '/images/about-header.webp',
     imageAlt: 'NewV Tours and Travels journey inspiration',
@@ -82,6 +82,10 @@ export const businessSchema = {
   founder: {
     '@type': 'Person',
     name: 'Jeevapriya MS',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Viyanistic',
   },
   sameAs: [
     'https://www.instagram.com/newv_tours_and_travels/',

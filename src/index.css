@@ -692,6 +692,7 @@ section {
 .about-quote-box .quote-text {
   font-size: 1.1rem;
   font-style: italic;
+  line-height: 1.5;
   color: var(--deep-forest-green);
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -1436,7 +1437,7 @@ section {
   }
 
   .hero-title span {
-    color: var(--white);
+    color: var(--fresh-lime);
   }
 
   .hero-desc {

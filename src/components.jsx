@@ -115,7 +115,7 @@ export function Footer() {
       </div>
       <center>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} NewV Tours and Travels. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} NewV Tours and Travels. A Viyanistic Company. All rights reserved.</p>
       </div>
       </center>
     </footer>
