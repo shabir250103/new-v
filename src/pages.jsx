@@ -18,6 +18,18 @@ async function fetchClientReviews(limit) {
   return response.json();
 }
 
+async function fetchUploadedGalleryImages() {
+  const query = new URLSearchParams({
+    select: 'id,image_base64,mime_type,created_at',
+    order: 'id.desc',
+  });
+  const response = await fetch(`${supabaseUrl}/rest/v1/gallery_images?${query}`, {
+    headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+  });
+  if (!response.ok) throw new Error(`Gallery request failed with ${response.status}`);
+  return response.json();
+}
+
 function reviewInitials(name = 'Happy Traveller') {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
 }
@@ -614,8 +626,35 @@ export function Gallery() {
   const [isPaused, setIsPaused] = React.useState(false);
   const [isHovering, setIsHovering] = React.useState(false);
   const [failedImages, setFailedImages] = React.useState(() => new Set());
+  const [uploadedImages, setUploadedImages] = React.useState([]);
 
-  const allImages = React.useMemo(() => galleryImages.filter((src) => !failedImages.has(src)), [failedImages]);
+  const allImages = React.useMemo(
+    () => [...galleryImages, ...uploadedImages].filter((src) => !failedImages.has(src)),
+    [failedImages, uploadedImages],
+  );
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadUploadedImages() {
+      try {
+        const images = await fetchUploadedGalleryImages();
+        if (cancelled || !Array.isArray(images)) return;
+        setUploadedImages(
+          images
+            .filter((image) => image.image_base64)
+            .map((image) => `data:${image.mime_type || 'image/jpeg'};base64,${image.image_base64}`),
+        );
+      } catch (error) {
+        console.error('Gallery images fetch failed:', error);
+      }
+    }
+
+    loadUploadedImages();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   React.useEffect(() => {
     if (isPaused || isHovering || allImages.length <= 1) return;

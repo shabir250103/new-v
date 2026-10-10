@@ -1865,6 +1865,11 @@ section {
   .page-header {
     height: 32vh;
     min-height: 260px;
+    margin-top: 0;
+  }
+
+  .page-header-content {
+    transform: translateY(24px);
   }
 
   .page-header-content h1 {
@@ -2058,7 +2063,7 @@ section {
   }
 
   .page-header-content {
-    transform: translateY(35px);
+    transform: translateY(22px);
   }
 
   .about-quote-box {
